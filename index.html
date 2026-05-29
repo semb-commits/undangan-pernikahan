@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>risky zanuar & anindita yustina- Undangan Pernikahan</title>
+<title>risky zanuar & anindita yustina - Undangan Pernikahan</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Great+Vibes&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -104,14 +104,6 @@ section.active{display:block}
   background:radial-gradient(circle at top, #7a1f2a 0%, #5a1720 100%);
   clip-path:polygon(50% 0%, 0% 100%, 100% 100%);
   z-index:0;
-}
-.floral-decor{
-  position:absolute;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
-  z-index:1;
 }
 .photo-frame{
   position:relative;
@@ -287,7 +279,7 @@ section.active{display:block}
 <!-- COVER -->
 <div class="cover" id="cover">
   <h3>THE WEDDING OF</h3>
-  <h1>risky zanuar&anindita yustina</h1>
+  <h1>risky zanuar & anindita yustina</h1>
   <p>Kepada Yth.</p>
   <p id="guestName" style="font-size:20px;font-weight:500;margin:15px 0">Tamu Undangan</p>
   <button class="open-btn" id="openBtn">Buka Undangan</button>
@@ -303,35 +295,35 @@ section.active{display:block}
       Bapak/Ibu/Saudara/i untuk hadir pada acara pernikahan kami
     </div>
 
-    <!-- INTAN -->
+    <!-- ANINDITA -->
     <div class="couple-card">
       <div class="gunungan-frame">
         <div class="photo-frame">
-          <img src="https://i.postimg.cc/sxKjJtSz/images-(14).jpg" alt="Intan">
+          <img src="https://i.postimg.cc/sxKjJtSz/images-(14).jpg" alt="Anindita">
         </div>
       </div>
-      <div class="name-script">anindita</div>
-      <div class="name-main">anindita yustina, S.Pd</div>
+      <div class="name-script">Anindita</div>
+      <div class="name-main">Anindita Yustina, S.Pd</div>
       <div class="address">
         Jetak RT 001/RW 001, Bangsri, Purwantoro, Wonogiri<br><br>
-        Putri kedua dari Bapak jali & Ibu Sulami.
+        Putri kedua dari Bapak Jali & Ibu Sulami
       </div>
     </div>
 
     <div class="divider">AND</div>
 
-    <!-- JANU -->
+    <!-- RISKY -->
     <div class="couple-card">
       <div class="gunungan-frame">
         <div class="photo-frame">
-          <img src="https://i.postimg.cc/sxKjJtSz/images-(14).jpg" alt="Janu">
+          <img src="https://i.postimg.cc/sxKjJtSz/images-(14).jpg" alt="Risky">
         </div>
       </div>
-      <div class="name-script">risky yanuar</div>
-      <div class="name-main">risky yanuar</div>
+      <div class="name-script">Risky</div>
+      <div class="name-main">Risky Yanuar</div>
       <div class="address">
         Jetak RT 002/RW 001, Bangsri, Purwantoro, Wonogiri<br><br>
-        Putra kedua dari Bapak Misdi (alm) & Ibu Parti.
+        Putra kedua dari Bapak Misdi (alm) & Ibu Parti
       </div>
     </div>
   </section>
@@ -408,7 +400,7 @@ section.active{display:block}
 
 <!-- MUSIC -->
 <audio id="bgMusic" loop preload="auto">
-  <source src="https://cdn.pixabay.com/download/audio/2024/11/16/audio_6b4c4c3a7b.mp3" type="audio/mpeg">
+  <source src="https://cdn.pixabay.com/download/audio/2023/02/28/audio_7b8b8b8b8b.mp3" type="audio/mpeg">
 </audio>
 <div class="music-btn" id="musicBtn" onclick="toggleMusic()" style="display:none">♪</div>
 
@@ -425,8 +417,16 @@ document.getElementById('openBtn').addEventListener('click',()=>{
   document.getElementById('main').style.display='block';
   document.getElementById('bottomNav').style.display='flex';
   document.getElementById('musicBtn').style.display='flex';
-  document.getElementById('bgMusic').play().catch(()=>{});
-  document.getElementById('musicBtn').classList.add('playing');
+  
+  const music = document.getElementById('bgMusic');
+  music.volume = 0.4;
+  
+  music.play().then(()=>{
+    document.getElementById('musicBtn').classList.add('playing');
+  }).catch((e)=>{
+    console.log("Musik gagal play:", e);
+    alert("Klik tombol musik ♪ di kanan bawah untuk putar lagu");
+  });
 });
 
 // Navigasi section
@@ -471,7 +471,7 @@ function kirimWA(){
     alert('Pilih konfirmasi kehadiran dulu ya');
     return;
   }
-  const text = `Halo Intan & Janu,%0A%0ANama: ${nama}%0AKehadiran: ${hadir}%0AUcapan: ${pesan}`;
+  const text = `Halo Risky & Anindita,%0A%0ANama: ${nama}%0AKehadiran: ${hadir}%0AUcapan: ${pesan}`;
   window.open(`https://wa.me/6281234567890?text=${text}`, '_blank');
 }
 </script>
