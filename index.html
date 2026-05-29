@@ -20,7 +20,7 @@ body{
   font-family:'Montserrat',sans-serif;
   background:var(--cream);
   color:#333;
-  padding-bottom:70px;
+  padding-bottom:80px;
 }
 
 section{
@@ -151,7 +151,7 @@ section.active{display:block}
   display:block;
 }
 
-/* NAV */
+/* NAV - UDAH DIGEDEIN */
 .bottom-nav{
   position:fixed;
   bottom:0;
@@ -160,17 +160,44 @@ section.active{display:block}
   background:var(--maroon);
   display:none;
   justify-content:space-around;
-  padding:10px 0;
+  padding:12px 0;
   z-index:100;
 }
 .nav-item{
   color:white;
   text-align:center;
-  font-size:11px;
+  font-size:13px;
   cursor:pointer;
   opacity:0.6;
+  padding:5px 10px;
 }
 .nav-item.active{opacity:1;}
+.nav-item svg{
+  width:24px;
+  height:24px;
+  display:block;
+  margin:0 auto 4px;
+}
+
+/* MUSIC BUTTON - DIBALIKIN */
+.music-btn{
+  position:fixed;
+  bottom:90px;
+  right:20px;
+  width:52px;
+  height:52px;
+  background:white;
+  border-radius:50%;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  box-shadow:0 5px 20px rgba(0,0,0,0.2);
+  cursor:pointer;
+  z-index:100;
+  font-size:20px;
+}
+.music-btn.playing{animation:spin 3s linear infinite}
+@keyframes spin{100%{transform:rotate(360deg)}}
 </style>
 </head>
 <body>
@@ -262,10 +289,25 @@ section.active{display:block}
 
 <!-- BOTTOM NAV -->
 <div class="bottom-nav" id="bottomNav">
-  <div class="nav-item active" onclick="showSection('couple',this)">Couple</div>
-  <div class="nav-item" onclick="showSection('event',this)">Event</div>
-  <div class="nav-item" onclick="showSection('rsvp',this)">Wishes</div>
+  <div class="nav-item active" onclick="showSection('couple',this)">
+    <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+    Couple
+  </div>
+  <div class="nav-item" onclick="showSection('event',this)">
+    <svg fill="currentColor" viewBox="0 0 24 24"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zM9 14H7v-2h2v2zm4 0h-2v-2h2v2zm4 0h-2v-2h2v2z"/></svg>
+    Event
+  </div>
+  <div class="nav-item" onclick="showSection('rsvp',this)">
+    <svg fill="currentColor" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+    Wishes
+  </div>
 </div>
+
+<!-- MUSIC -->
+<audio id="bgMusic" loop preload="auto">
+  <source src="./lagu.mp3" type="audio/mpeg">
+</audio>
+<div class="music-btn" id="musicBtn" onclick="toggleMusic()">♪</div>
 
 <script>
 // Auto cache busting untuk gambar prewedding
@@ -277,6 +319,11 @@ document.getElementById('openBtn').addEventListener('click',()=>{
   document.getElementById('cover').style.display='none';
   document.getElementById('main').style.display='block';
   document.getElementById('bottomNav').style.display='flex';
+  document.getElementById('musicBtn').style.display='flex';
+
+  const music = document.getElementById('bgMusic');
+  music.volume = 0.4;
+  music.play().catch(()=>{});
 });
 
 // Ganti section
@@ -285,6 +332,19 @@ function showSection(id,el){
   document.getElementById(id).classList.add('active');
   document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
   el.classList.add('active');
+}
+
+// Toggle musik
+function toggleMusic(){
+  const music = document.getElementById('bgMusic');
+  const btn = document.getElementById('musicBtn');
+  if(music.paused){
+    music.play();
+    btn.classList.add('playing');
+  }else{
+    music.pause();
+    btn.classList.remove('playing');
+  }
 }
 
 // Kirim WA
@@ -308,4 +368,4 @@ document.getElementById('namaTamu').value = decodeURIComponent(tamu.replace(/\+/
 </script>
 
 </body>
-      </html>
+                                                                                                                                         </html>
