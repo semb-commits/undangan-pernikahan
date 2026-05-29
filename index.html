@@ -4,7 +4,18 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>risky & anindita - Undangan Pernikahan</title>
+
+<!-- GOOGLE FONTS -->
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Great+Vibes&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+
+<!-- OPEN GRAPH - Biar share WA muncul preview -->
+<meta property="og:title" content="The Wedding Of Risky & Anindita">
+<meta property="og:description" content="Tanpa mengurangi rasa hormat, kami mengundang Anda untuk hadir di acara pernikahan kami">
+<meta property="og:image" content="https://i.postimg.cc/sxKjJtSz/images-(14).jpg">
+<meta property="og:url" content="https://semb-commits.github.io/undangan-pernikahan/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+
 <style>
 :root{
   --maroon:#7a1f2a;
@@ -47,31 +58,94 @@ section.active{display:block}
   to{opacity:1;transform:translateY(0)}
 }
 
-/* COVER */
+/* COVER BARU - KAYAK CONTOH LU */
 .cover{
-  height:100vh;
+  min-height:100vh;
   display:flex;
   flex-direction:column;
   justify-content:center;
   align-items:center;
   text-align:center;
-  background:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url('https://i.postimg.cc/7hXHNp7r/images-(13).jpg') center/cover;
-  color:white;
+  background:#f8f5f2;
+  padding:30px 20px;
+  position:relative;
+  overflow:hidden;
 }
-.cover h1{
+.cover-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:16px;
+  letter-spacing:3px;
+  color:var(--maroon);
+  margin-bottom:20px;
+}
+.cover-names{
   font-family:'Great Vibes',cursive;
-  font-size:52px;
-  margin:15px 0;
+  font-size:48px;
+  color:var(--maroon);
+  line-height:1.2;
+  margin-bottom:30px;
+}
+
+/* FRAME FOTO ANIMASI */
+.frame{
+  width:240px;
+  height:300px;
+  margin:0 auto 25px;
+  position:relative;
+  animation:scaleIn 1.5s ease-out;
+}
+.frame::before{
+  content:'';
+  position:absolute;
+  top:-15px; left:-15px; right:-15px; bottom:-15px;
+  border:3px solid var(--gold);
+  border-radius:50% 50% 0 0 / 60% 60% 0 0;
+  animation:fadeIn 2s ease-out;
+}
+.photo{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  border-radius:50% 50% 0 0 / 60% 60% 0 0;
+}
+.cover-to{
+  font-size:14px;
+  color:#666;
+  margin-bottom:8px;
+}
+.guest-name{
+  font-family:'Cormorant Garamond',serif;
+  font-size:24px;
+  color:var(--maroon);
+  margin-bottom:25px;
 }
 .open-btn{
-  background:var(--gold);
+  background:var(--maroon);
   color:white;
   border:none;
-  padding:15px 45px;
-  border-radius:50px;
+  padding:14px 40px;
+  border-radius:25px;
   font-size:16px;
   cursor:pointer;
-  margin-top:20px;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin:0 auto;
+}
+
+/* WAYANG DI BAWAH */
+.wayang-bottom{
+  position:absolute;
+  bottom:-20px;
+  left:0;
+  right:0;
+  display:flex;
+  justify-content:space-between;
+  opacity:0.15;
+  animation:slideUp 2s ease-out;
+}
+.wayang-bottom img{
+  width:120px;
 }
 
 /* INVITATION TEXT */
@@ -177,14 +251,8 @@ section.active{display:block}
   background-size:cover;
   opacity:0.3;
 }
-.event-card::before{
-  bottom:-20px;
-  left:-20px;
-}
-.event-card::after{
-  bottom:-20px;
-  right:-20px;
-}
+.event-card::before{bottom:-20px;left:-20px;}
+.event-card::after{bottom:-20px;right:-20px;}
 .event-card h2{
   font-family:'Cormorant Garamond',serif;
   font-size:32px;
@@ -244,9 +312,7 @@ section.active{display:block}
   transition:opacity 0.3s;
 }
 .nav-item.active,
-.nav-item:hover{
-  opacity:1;
-}
+.nav-item:hover{opacity:1;}
 .nav-item svg{
   width:22px;
   height:22px;
@@ -272,17 +338,40 @@ section.active{display:block}
 }
 .music-btn.playing{animation:spin 3s linear infinite}
 @keyframes spin{100%{transform:rotate(360deg)}}
+
+@keyframes scaleIn{
+  from{transform:scale(0.8);opacity:0}
+  to{transform:scale(1);opacity:1}
+@keyframes fadeIn{
+  from{opacity:0}
+  to{opacity:1}
+@keyframes slideUp{
+  from{transform:translateY(50px);opacity:0}
+  to{transform:translateY(0);opacity:0.15}
 </style>
 </head>
 <body>
 
-<!-- COVER -->
+<!-- COVER BARU -->
 <div class="cover" id="cover">
-  <h3>THE WEDDING OF</h3>
-  <h1>risky & anindita </h1>
-  <p>Kepada Yth.</p>
-  <p id="guestName" style="font-size:20px;font-weight:500;margin:15px 0">Tamu Undangan</p>
-  <button class="open-btn" id="openBtn">Buka Undangan</button>
+  <p class="cover-title">THE WEDDING OF</p>
+  <h1 class="cover-names">risky & anindita</h1>
+  
+  <div class="frame">
+    <img src="https://i.postimg.cc/sxKjJtSz/images-(14).jpg" alt="Foto Mempelai" class="photo">
+  </div>
+
+  <p class="cover-to">Kepada Yth.</p>
+  <h2 id="guestName" class="guest-name">Tamu Undangan</h2>
+
+  <button class="open-btn" id="openBtn">
+    <span>✉️</span> Buka Undangan
+  </button>
+
+  <div class="wayang-bottom">
+    <img src="https://i.postimg.cc/7hXHNp7r/images-(13).jpg" alt="">
+    <img src="https://i.postimg.cc/7hXHNp7r/images-(13).jpg" alt="">
+  </div>
 </div>
 
 <!-- MAIN CONTENT -->
@@ -425,7 +514,6 @@ document.getElementById('openBtn').addEventListener('click',()=>{
     document.getElementById('musicBtn').classList.add('playing');
   }).catch((e)=>{
     console.log("Musik gagal play:", e);
-    alert("Klik tombol musik ♪ di kanan bawah untuk putar lagu");
   });
 });
 
