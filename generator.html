@@ -29,7 +29,8 @@ Pak Joko dan Keluarga"></textarea>
 <div id="hasil"></div>
 
 <script>
-const baseLink = "https://semb-commits.github.io/undangan/?untuk=";
+// Otomatis ngikutin URL repo lu sekarang
+const baseLink = window.location.origin + window.location.pathname.replace('/generator.html', '/') + '?untuk=';
 
 function generate(){
   const list = document.getElementById('namaList').value.trim().split('\n');
@@ -56,4 +57,4 @@ function copyLink(link){
 </script>
 
 </body>
-  </html>
+</html>
