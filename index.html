@@ -148,7 +148,20 @@ section.active{display:block}
       <div style="font-size:14px;color:#666;margin-bottom:15px">🕒 10.00 WIB s/d Selesai</div>
       <div style="font-weight:600;font-size:16px;margin-bottom:5px">Rumah Makan Laras Slogohimo</div>
       <div>Soco, Kec. Slogohimo, Kab. Wonogiri</div>
+      
       <a href="https://maps.app.goo.gl/nnFCzsDnw3aihJky5" target="_blank" style="display:inline-block;border:1px solid #ccc;padding:10px 25px;border-radius:8px;text-decoration:none;color:#333;margin-top:15px;font-size:14px">📍 Google Map</a>
+
+      <!-- Tombol Simpan ke Kalender -->
+      <div style="margin-top:15px; display:flex; gap:10px; justify-content:center; flex-wrap:wrap;">
+        <a href="https://www.google.com/calendar/render?action=TEMPLATE&text=Pernikahan+Risky+%26+Anindita&dates=20260610T030000Z/20260610T060000Z&details=Rumah+Makan+Laras+Slogohimo&location=Rumah+Makan+Laras+Slogohimo%2C+Soco%2C+Kec.+Slogohimo%2C+Kab.+Wonogiri" 
+           target="_blank" style="padding:10px 20px; background:#4285F4; color:white; border-radius:8px; text-decoration:none; font-size:14px; font-weight:600;">
+           📅 Google Calendar
+        </a>
+        
+        <a href="undangan.ics" style="padding:10px 20px; background:#f2f2f2; color:#333; border-radius:8px; text-decoration:none; font-size:14px; font-weight:600; border:1px solid #ddd;">
+           📅 Apple/Calendar HP
+        </a>
+      </div>
     </div>
   </section>
 
@@ -189,4 +202,4 @@ function kirimWA(){const nama=document.getElementById('namaTamu').value;const ha
 const urlParams=new URLSearchParams(window.location.search);const tamu=urlParams.get('untuk')||'Tamu Undangan';document.getElementById('guestName').innerText=decodeURIComponent(tamu.replace(/\+/g,' '));document.getElementById('namaTamu').value=decodeURIComponent(tamu.replace(/\+/g,' '));
 </script>
 </body>
-      </html>
+  </html>
