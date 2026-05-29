@@ -8,10 +8,10 @@
 <!-- GOOGLE FONTS -->
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Great+Vibes&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
 
-<!-- OPEN GRAPH - Biar share WA muncul preview -->
+<!-- OPEN GRAPH -->
 <meta property="og:title" content="The Wedding Of Risky & Anindita">
 <meta property="og:description" content="Tanpa mengurangi rasa hormat, kami mengundang Anda untuk hadir di acara pernikahan kami">
-<meta property="og:image" content="https://semb-commits.github.io/undangan-pernikahan/Mempelai.jpg">
+<meta property="og:image" content="https://semb-commits.github.io/undangan-pernikahan/Mempelai.jpg?v=3">
 <meta property="og:url" content="https://semb-commits.github.io/undangan-pernikahan/">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
@@ -32,7 +32,6 @@ body{
   padding-bottom:70px;
 }
 
-/* BACKGROUND */
 body::before{
   content:'';
   position:fixed;
@@ -45,7 +44,6 @@ body::before{
   z-index:-1;
 }
 
-/* SECTIONS */
 section{
   min-height:100vh;
   padding:40px 20px 80px;
@@ -53,12 +51,12 @@ section{
   animation:fadeIn 0.5s;
 }
 section.active{display:block}
+
 @keyframes fadeIn{
   from{opacity:0;transform:translateY(20px)}
   to{opacity:1;transform:translateY(0)}
 }
 
-/* COVER */
 .cover{
   min-height:100vh;
   display:flex;
@@ -86,7 +84,6 @@ section.active{display:block}
   margin-bottom:30px;
 }
 
-/* FRAME FOTO ANIMASI */
 .frame{
   width:240px;
   height:300px;
@@ -100,7 +97,6 @@ section.active{display:block}
   top:-15px; left:-15px; right:-15px; bottom:-15px;
   border:3px solid var(--gold);
   border-radius:50% 50% 0 0 / 60% 60% 0 0;
-  animation:fadeIn 2s ease-out;
 }
 .photo{
   width:100%;
@@ -133,7 +129,6 @@ section.active{display:block}
   margin:0 auto;
 }
 
-/* WAYANG DI BAWAH */
 .wayang-bottom{
   position:absolute;
   bottom:-20px;
@@ -148,7 +143,6 @@ section.active{display:block}
   width:120px;
 }
 
-/* INVITATION TEXT */
 .invite-text{
   text-align:center;
   padding:30px 20px;
@@ -157,7 +151,6 @@ section.active{display:block}
   color:#555;
 }
 
-/* COUPLE CARD */
 .couple-card{
   text-align:center;
   margin-bottom:50px;
@@ -229,7 +222,6 @@ section.active{display:block}
   margin:0 15px;
 }
 
-/* EVENT CARD */
 .event-card{
   background:white;
   padding:35px 25px;
@@ -254,7 +246,7 @@ section.active{display:block}
 .event-card::before{bottom:-20px;left:-20px;}
 .event-card::after{bottom:-20px;right:-20px;}
 .event-card h2{
-  family:'Cormorant Garamond',serif;
+  font-family:'Cormorant Garamond',serif;
   font-size:32px;
   color:var(--maroon);
   margin-bottom:15px;
@@ -291,7 +283,6 @@ section.active{display:block}
   font-size:14px;
 }
 
-/* BOTTOM NAV */
 .bottom-nav{
   position:fixed;
   bottom:0;
@@ -320,7 +311,6 @@ section.active{display:block}
   margin:0 auto 4px;
 }
 
-/* MUSIC BUTTON */
 .music-btn{
   position:fixed;
   bottom:80px;
@@ -342,9 +332,6 @@ section.active{display:block}
 @keyframes scaleIn{
   from{transform:scale(0.8);opacity:0}
   to{transform:scale(1);opacity:1}
-@keyframes fadeIn{
-  from{opacity:0}
-  to{opacity:1}
 @keyframes slideUp{
   from{transform:translateY(50px);opacity:0}
   to{transform:translateY(0);opacity:0.15}
@@ -370,7 +357,6 @@ section.active{display:block}
 </head>
 <body>
 
-<!-- COVER -->
 <div class="cover" id="cover">
   <p class="cover-title">THE WEDDING OF</p>
   <h1 class="cover-names">risky & anindita</h1>
@@ -392,17 +378,14 @@ section.active{display:block}
   </div>
 </div>
 
-<!-- MAIN CONTENT -->
 <div id="main" style="display:none">
 
-  <!-- SECTION COUPLE -->
   <section id="couple" class="active">
     <div class="invite-text">
       Tanpa mengurangi rasa hormat dengan ini kami mengundang<br>
       Bapak/Ibu/Saudara/i untuk hadir pada acara pernikahan kami
     </div>
 
-    <!-- ANINDITA -->
     <div class="couple-card">
       <div class="gunungan-frame">
         <div class="photo-frame">
@@ -419,7 +402,6 @@ section.active{display:block}
 
     <div class="divider">AND</div>
 
-    <!-- RISKY -->
     <div class="couple-card">
       <div class="gunungan-frame">
         <div class="photo-frame">
@@ -435,7 +417,6 @@ section.active{display:block}
     </div>
   </section>
 
-  <!-- SECTION EVENT -->
   <section id="event">
     <div class="event-card">
       <h2>RESEPSI</h2>
@@ -448,7 +429,6 @@ section.active{display:block}
       <a href="https://maps.app.goo.gl/CRnwdci4uBSDLHQ99" target="_blank" class="map-btn">📍 Google Map</a>
     </div>
 
-    <!-- COUNTDOWN -->
     <div style="text-align:center;margin-top:40px">
       <h3 style="font-family:'Cormorant Garamond',serif;font-size:28px;color:var(--maroon);margin-bottom:20px">Menuju Hari Bahagia</h3>
       <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;max-width:350px;margin:0 auto">
@@ -472,12 +452,11 @@ section.active{display:block}
     </div>
   </section>
 
-  <!-- SECTION RSVP - FIXED -->
   <section id="rsvp">
     <div style="max-width:500px;margin:0 auto;text-align:center;padding:0 15px">
 
       <div class="prewedding-frame">
-        <img src="https://semb-commits.github.io/undangan-pernikahan/preweding.jpeg" alt="Risky & Anindita Prewedding">
+        <img src="https://semb-commits.github.io/undangan-pernikahan/preweding.jpeg?v=3" alt="Risky & Anindita Prewedding">
       </div>
 
       <h2 style="font-family:'Cormorant Garamond',serif;font-size:32px;color:var(--maroon);margin-bottom:25px">Konfirmasi Kehadiran</h2>
@@ -495,7 +474,6 @@ section.active{display:block}
 
 </div>
 
-<!-- BOTTOM NAV -->
 <div class="bottom-nav" id="bottomNav" style="display:none">
   <div class="nav-item active" onclick="showSection('couple',this)">
     <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
@@ -511,20 +489,17 @@ section.active{display:block}
   </div>
 </div>
 
-<!-- MUSIC -->
 <audio id="bgMusic" loop preload="auto">
   <source src="./lagu.mp3" type="audio/mpeg">
 </audio>
 <div class="music-btn" id="musicBtn" onclick="toggleMusic()" style="display:none">♪</div>
 
 <script>
-// Nama tamu dari URL
 const urlParams = new URLSearchParams(window.location.search);
 const tamu = urlParams.get('untuk') || 'Tamu Undangan';
 document.getElementById('guestName').innerText = decodeURIComponent(tamu.replace(/\+/g,' '));
 document.getElementById('namaTamu').value = decodeURIComponent(tamu.replace(/\+/g,' '));
 
-// Buka undangan
 document.getElementById('openBtn').addEventListener('click',()=>{
   document.getElementById('cover').style.display='none';
   document.getElementById('main').style.display='block';
@@ -533,7 +508,6 @@ document.getElementById('openBtn').addEventListener('click',()=>{
 
   const music = document.getElementById('bgMusic');
   music.volume = 0.4;
-
   music.play().then(()=>{
     document.getElementById('musicBtn').classList.add('playing');
   }).catch((e)=>{
@@ -541,7 +515,6 @@ document.getElementById('openBtn').addEventListener('click',()=>{
   });
 });
 
-// Navigasi section
 function showSection(id,el){
   document.querySelectorAll('section').forEach(s=>s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
@@ -549,7 +522,6 @@ function showSection(id,el){
   el.classList.add('active');
 }
 
-// Musik toggle
 function toggleMusic(){
   const music = document.getElementById('bgMusic');
   const btn = document.getElementById('musicBtn');
@@ -562,7 +534,6 @@ function toggleMusic(){
   }
 }
 
-// Countdown
 const weddingDate = new Date("Jun 10, 2026 10:00:00").getTime();
 setInterval(()=>{
   const now = new Date().getTime();
@@ -574,7 +545,6 @@ setInterval(()=>{
   document.getElementById('seconds').innerText = String(Math.floor((distance%(1000*60))/1000)).padStart(2,'0');
 },1000);
 
-// Kirim RSVP ke WA
 function kirimWA(){
   const nama = document.getElementById('namaTamu').value;
   const hadir = document.getElementById('kehadiran').value;
@@ -587,11 +557,9 @@ function kirimWA(){
   window.open(`https://wa.me/6281234567890?text=${text}`, '_blank');
 }
 
-// Auto versioning biar WA gak cache gambar lama
-const shareLink = window.location.origin + window.location.pathname + '?v=' + Date.now();
+const shareLink = window.location.origin + window.location.pathname + '?v=3';
 window.getShareLink = () => shareLink;
 
-// Kalau ada tombol share, auto update link nya
 document.addEventListener('DOMContentLoaded', () => {
   const shareButtons = document.querySelectorAll('a[href*="wa.me"]');
   shareButtons.forEach(btn => {
