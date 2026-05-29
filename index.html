@@ -46,6 +46,8 @@ section.active{display:block}
   text-align:center;
   background:#f8f5f2;
   padding:30px 20px;
+  position:relative;
+  overflow:hidden;
 }
 .cover-title{
   font-family:'Cormorant Garamond',serif;
@@ -53,6 +55,7 @@ section.active{display:block}
   letter-spacing:3px;
   color:var(--maroon);
   margin-bottom:20px;
+  animation:fadeDown 1s ease-out;
 }
 .cover-names{
   font-family:'Great Vibes',cursive;
@@ -60,12 +63,14 @@ section.active{display:block}
   color:var(--maroon);
   line-height:1.2;
   margin-bottom:30px;
+  animation:fadeUp 1.2s ease-out;
 }
 .frame{
   width:240px;
   height:300px;
   margin:0 auto 25px;
   position:relative;
+  animation:scaleIn 1.5s ease-out;
 }
 .frame::before{
   content:'';
@@ -88,6 +93,21 @@ section.active{display:block}
   border-radius:25px;
   font-size:16px;
   cursor:pointer;
+  animation:fadeUp 1.8s ease-out;
+}
+
+/* ANIMASI */
+@keyframes fadeDown{
+  from{opacity:0;transform:translateY(-30px)}
+  to{opacity:1;transform:translateY(0)}
+}
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(30px)}
+  to{opacity:1;transform:translateY(0)}
+}
+@keyframes scaleIn{
+  from{transform:scale(0.8);opacity:0}
+  to{transform:scale(1);opacity:1}
 }
 
 /* COUPLE */
@@ -115,6 +135,7 @@ section.active{display:block}
   font-size:36px;
   color:#999;
   margin:15px 0 5px;
+  animation:fadeIn 1s;
 }
 .name-main{
   font-family:'Cormorant Garamond',serif;
@@ -133,6 +154,7 @@ section.active{display:block}
   text-align:center;
   max-width:500px;
   margin:0 auto;
+  animation:scaleIn 0.8s;
 }
 
 /* RSVP + PREWEDDING */
@@ -144,6 +166,7 @@ section.active{display:block}
   overflow:hidden;
   box-shadow:0 6px 20px rgba(0,0,0,0.12);
   border:6px solid white;
+  animation:scaleIn 0.8s;
 }
 .prewedding-frame img{
   width:100%;
@@ -151,7 +174,7 @@ section.active{display:block}
   display:block;
 }
 
-/* NAV - UDAH DIGEDEIN */
+/* NAV */
 .bottom-nav{
   position:fixed;
   bottom:0;
@@ -170,6 +193,7 @@ section.active{display:block}
   cursor:pointer;
   opacity:0.6;
   padding:5px 10px;
+  transition:opacity 0.3s;
 }
 .nav-item.active{opacity:1;}
 .nav-item svg{
@@ -179,7 +203,7 @@ section.active{display:block}
   margin:0 auto 4px;
 }
 
-/* MUSIC BUTTON - DIBALIKIN */
+/* MUSIC BUTTON */
 .music-btn{
   position:fixed;
   bottom:90px;
@@ -211,8 +235,8 @@ section.active{display:block}
     <img src="https://i.postimg.cc/sxKjJtSz/images-(14).jpg" alt="Foto Mempelai" class="photo">
   </div>
 
-  <p style="font-size:14px;color:#666;margin-bottom:8px">Kepada Yth.</p>
-  <h2 id="guestName" style="font-family:'Cormorant Garamond',serif;font-size:24px;color:var(--maroon);margin-bottom:25px">Tamu Undangan</h2>
+  <p style="font-size:14px;color:#666;margin-bottom:8px;animation:fadeUp 1.5s">Kepada Yth.</p>
+  <h2 id="guestName" style="font-family:'Cormorant Garamond',serif;font-size:24px;color:var(--maroon);margin-bottom:25px;animation:fadeUp 1.6s">Tamu Undangan</h2>
 
   <button class="open-btn" id="openBtn">✉️ Buka Undangan</button>
 </div>
@@ -221,7 +245,7 @@ section.active{display:block}
 <div id="main" style="display:none">
 
   <section id="couple" class="active">
-    <div style="text-align:center;padding:30px 20px;font-size:14px;line-height:1.6;color:#555">
+    <div style="text-align:center;padding:30px 20px;font-size:14px;line-height:1.6;color:#555;animation:fadeIn 0.8s">
       Tanpa mengurangi rasa hormat dengan ini kami mengundang<br>
       Bapak/Ibu/Saudara/i untuk hadir pada acara pernikahan kami
     </div>
@@ -238,7 +262,7 @@ section.active{display:block}
       </div>
     </div>
 
-    <div style="text-align:center;margin:30px 0;color:#999">AND</div>
+    <div style="text-align:center;margin:30px 0;color:#999;animation:fadeIn 1s">AND</div>
 
     <div class="couple-card">
       <div class="photo-frame">
@@ -368,4 +392,4 @@ document.getElementById('namaTamu').value = decodeURIComponent(tamu.replace(/\+/
 </script>
 
 </body>
-                                                                                                                                         </html>
+      </html>
