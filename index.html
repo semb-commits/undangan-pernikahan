@@ -58,7 +58,7 @@ section.active{display:block}
   to{opacity:1;transform:translateY(0)}
 }
 
-/* COVER BARU - KAYAK CONTOH LU */
+/* COVER */
 .cover{
   min-height:100vh;
   display:flex;
@@ -254,7 +254,7 @@ section.active{display:block}
 .event-card::before{bottom:-20px;left:-20px;}
 .event-card::after{bottom:-20px;right:-20px;}
 .event-card h2{
-  font-family:'Cormorant Garamond',serif;
+  family:'Cormorant Garamond',serif;
   font-size:32px;
   color:var(--maroon);
   margin-bottom:15px;
@@ -350,25 +350,27 @@ section.active{display:block}
   to{transform:translateY(0);opacity:0.15}
 }
 
-/* PREWEDDING FRAME - YANG BARU */
+/* PREWEDDING FRAME - FIXED */
 .prewedding-frame{
   width:100%;
-  max-width:350px;
-  margin:0 auto 25px;
-  border-radius:20px;
+  max-width:300px;
+  margin:0 auto 30px;
+  border-radius:16px;
   overflow:hidden;
-  box-shadow:0 8px 25px rgba(0,0,0,0.15);
+  box-shadow:0 6px 20px rgba(0,0,0,0.12);
+  border:6px solid white;
 }
 .prewedding-frame img{
   width:100%;
   height:auto;
   display:block;
+  object-fit:cover;
 }
 </style>
 </head>
 <body>
 
-<!-- COVER BARU -->
+<!-- COVER -->
 <div class="cover" id="cover">
   <p class="cover-title">THE WEDDING OF</p>
   <h1 class="cover-names">risky & anindita</h1>
@@ -470,23 +472,23 @@ section.active{display:block}
     </div>
   </section>
 
-  <!-- SECTION RSVP - UDAH DITAMBAH FOTO -->
+  <!-- SECTION RSVP - FIXED -->
   <section id="rsvp">
-    <div style="max-width:500px;margin:0 auto;text-align:center">
+    <div style="max-width:500px;margin:0 auto;text-align:center;padding:0 15px">
 
-      <!-- FOTO PREWEDDING -->
       <div class="prewedding-frame">
         <img src="https://semb-commits.github.io/undangan-pernikahan/preweding.jpeg" alt="Risky & Anindita Prewedding">
       </div>
 
       <h2 style="font-family:'Cormorant Garamond',serif;font-size:32px;color:var(--maroon);margin-bottom:25px">Konfirmasi Kehadiran</h2>
-      <input type="text" id="namaTamu" placeholder="Nama Anda" readonly style="width:100%;padding:12px;margin-bottom:12px;border:1px solid #ddd;border-radius:8px">
-      <select id="kehadiran" style="width:100%;padding:12px;margin-bottom:12px;border:1px solid #ddd;border-radius:8px">
+
+      <input type="text" id="namaTamu" placeholder="Nama Anda" readonly style="width:100%;padding:12px;margin-bottom:12px;border:1px solid #ddd;border-radius:8px;background:#fff">
+      <select id="kehadiran" style="width:100%;padding:12px;margin-bottom:12px;border:1px solid #ddd;border-radius:8px;background:#fff">
         <option value="">Konfirmasi Kehadiran</option>
         <option value="Hadir">Hadir</option>
         <option value="Tidak Hadir">Tidak Hadir</option>
       </select>
-      <textarea id="pesan" rows="4" placeholder="Ucapan & Doa" style="width:100%;padding:12px;margin-bottom:12px;border:1px solid #ddd;border-radius:8px;font-family:inherit"></textarea>
+      <textarea id="pesan" rows="4" placeholder="Ucapan & Doa" style="width:100%;padding:12px;margin-bottom:12px;border:1px solid #ddd;border-radius:8px;font-family:inherit;background:#fff"></textarea>
       <button onclick="kirimWA()" style="width:100%;background:var(--maroon);color:white;border:none;padding:15px;border-radius:8px;cursor:pointer;font-size:16px">Kirim ke WhatsApp</button>
     </div>
   </section>
