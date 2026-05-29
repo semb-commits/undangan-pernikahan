@@ -356,7 +356,7 @@ section.active{display:block}
 <div class="cover" id="cover">
   <p class="cover-title">THE WEDDING OF</p>
   <h1 class="cover-names">risky & anindita</h1>
-  
+
   <div class="frame">
     <img src="https://i.postimg.cc/sxKjJtSz/images-(14).jpg" alt="Foto Mempelai" class="photo">
   </div>
@@ -506,10 +506,10 @@ document.getElementById('openBtn').addEventListener('click',()=>{
   document.getElementById('main').style.display='block';
   document.getElementById('bottomNav').style.display='flex';
   document.getElementById('musicBtn').style.display='flex';
-  
+
   const music = document.getElementById('bgMusic');
   music.volume = 0.4;
-  
+
   music.play().then(()=>{
     document.getElementById('musicBtn').classList.add('playing');
   }).catch((e)=>{
@@ -562,6 +562,21 @@ function kirimWA(){
   const text = `Halo Risky & Anindita,%0A%0ANama: ${nama}%0AKehadiran: ${hadir}%0AUcapan: ${pesan}`;
   window.open(`https://wa.me/6281234567890?text=${text}`, '_blank');
 }
+
+// Auto versioning biar WA gak cache gambar lama
+const shareLink = window.location.origin + window.location.pathname + '?v=' + Date.now();
+window.getShareLink = () => shareLink;
+
+// Kalau ada tombol share, auto update link nya
+document.addEventListener('DOMContentLoaded', () => {
+  const shareButtons = document.querySelectorAll('a[href*="wa.me"]');
+  shareButtons.forEach(btn => {
+    let currentHref = btn.getAttribute('href');
+    if(currentHref.includes('text=')){
+      btn.href = currentHref.split('&text=')[0] + '&text=' + encodeURIComponent('Undangan Pernikahan Risky & Anindita\n' + shareLink);
+    }
+  });
+});
 </script>
 
 </body>
