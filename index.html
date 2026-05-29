@@ -6,38 +6,53 @@
 <title>Undangan Pernikahan</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Poppins',sans-serif;background:#f9f7f5;color:#333}
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent;
+}
+body{
+  font-family:'Poppins',sans-serif;
+  background:#f9f7f5;
+  color:#333;
+  overflow-x:hidden;
+}
 
 :root{
   --maroon:#7a1f2a;
-  --cream:#f9f7f5;
 }
 
-/* COVER */
+/* COVER - ini yang penting */
 .cover{
-  height:100vh;
+  position:fixed;
+  top:0;
+  left:0;
   width:100%;
-  background:var(--cream);
+  height:100vh;
+  background:#f9f7f5;
   display:flex;
   flex-direction:column;
   justify-content:center;
   align-items:center;
   text-align:center;
   padding:20px;
-  position:fixed;
-  top:0;left:0;
-  z-index:100;
-  transition:opacity 0.8s, transform 0.8s;
-  pointer-events:auto;
+  z-index:9999;
+  transition:opacity 0.6s, visibility 0.6s;
 }
 .cover.hide{
   opacity:0;
-  transform:translateY(-100%);
+  visibility:hidden;
   pointer-events:none;
 }
 
-.cover h3{font-family:'Cormorant Garamond',serif;font-size:16px;letter-spacing:4px;color:var(--maroon);font-weight:400;margin-bottom:20px}
+.cover h3{
+  font-family:'Cormorant Garamond',serif;
+  font-size:16px;
+  letter-spacing:4px;
+  color:var(--maroon);
+  margin-bottom:20px;
+}
 .names{
   font-family:'Cormorant Garamond',serif;
   font-size:42px;
@@ -46,6 +61,8 @@ body{font-family:'Poppins',sans-serif;background:#f9f7f5;color:#333}
 }
 .guest-text{font-size:14px;color:#666;margin-bottom:5px}
 .guest-name{font-size:22px;font-weight:500;color:#333;margin-bottom:25px}
+
+/* TOMBOL - paling penting */
 .open-btn{
   background:var(--maroon);
   color:white;
@@ -54,18 +71,29 @@ body{font-family:'Poppins',sans-serif;background:#f9f7f5;color:#333}
   border-radius:4px;
   font-size:15px;
   cursor:pointer;
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
   position:relative;
-  z-index:9999;
-  pointer-events:auto;
+  z-index:10000;
+  pointer-events:auto !important;
+  touch-action:manipulation;
+  -webkit-touch-callout:none;
+  user-select:none;
 }
-.open-btn:active{transform:scale(0.95)}
+.open-btn:active{
+  transform:scale(0.95);
+}
 
 /* MAIN CONTENT */
-.main{display:none;padding-bottom:70px}
-.section{display:none;min-height:100vh;padding:30px 20px 80px}
+.main{
+  display:none;
+  padding-bottom:70px;
+  position:relative;
+  z-index:1;
+}
+.section{
+  display:none;
+  min-height:100vh;
+  padding:30px 20px 80px;
+}
 .section.active{display:block}
 
 .event-card{
@@ -115,7 +143,6 @@ body{font-family:'Poppins',sans-serif;background:#f9f7f5;color:#333}
 .time-box span{display:block;font-size:24px;font-weight:600}
 .time-box small{font-size:12px}
 
-/* BOTTOM NAV */
 .bottom-nav{
   position:fixed;
   bottom:0;
@@ -136,27 +163,11 @@ body{font-family:'Poppins',sans-serif;background:#f9f7f5;color:#333}
   padding:5px 8px;
 }
 .nav-item.active{opacity:1}
-
-.music-btn{
-  position:fixed;
-  bottom:80px;
-  right:20px;
-  width:45px;
-  height:45px;
-  background:white;
-  border-radius:50%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  box-shadow:0 4px 12px rgba(0,0,0,0.15);
-  cursor:pointer;
-  z-index:60;
-}
 </style>
 </head>
 <body>
 
-<audio id="bgMusic" loop>
+<audio id="bgMusic" loop preload="none">
   <source src="https://cdn.pixabay.com/audio/2024/11/16/audio_6b4c4c3a7b.mp3" type="audio/mpeg">
 </audio>
 
@@ -212,30 +223,34 @@ body{font-family:'Poppins',sans-serif;background:#f9f7f5;color:#333}
   <div class="nav-item" onclick="showSection('event')">Event</div>
 </div>
 
-<!-- MUSIC BUTTON -->
-<div class="music-btn" id="musicBtn" onclick="toggleMusic()">
-  <svg width="20" height="20" fill="#7a1f2a" viewBox="0 0 20 20">
-    <path d="M18 3a1 1 0 00-1.196-.98l-10 2A1 1 0 006 5v9.114A4.369 4.369 0 005 14c-1.657 0-3 .895-3 2s1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2V7.82l8-1.6v5.894A4.37 4.37 0 0015 12c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2V3z"/>
-  </svg>
-</div>
-
 <script>
-// Fix: baca parameter ?untuk= dan ?to=
+// Baca nama tamu dari URL
 const urlParams = new URLSearchParams(window.location.search);
 const tamu = urlParams.get('untuk') || urlParams.get('to');
 if(tamu){
   document.getElementById('guestName').innerText = decodeURIComponent(tamu.replace(/\+/g, '));
 }
 
-// Tombol buka undangan
-document.getElementById('openBtn').addEventListener('click', function(e){
-  e.preventDefault();
-  document.getElementById('cover').classList.add('hide');
-  document.getElementById('main').style.display='block';
-  playMusic();
+// Fungsi buka undangan - pakai vanilla JS biar pasti jalan
+document.addEventListener('DOMContentLoaded', function(){
+  const btn = document.getElementById('openBtn');
+  const cover = document.getElementById('cover');
+  const main = document.getElementById('main');
+  const music = document.getElementById('bgMusic');
+  
+  btn.addEventListener('click', function(e){
+    e.preventDefault();
+    e.stopPropagation();
+    
+    cover.classList.add('hide');
+    main.style.display='block';
+    
+    // Play musik setelah klik, biar gak kena auto-play block
+    music.play().catch(()=>{});
+  });
 });
 
-// Navigasi section
+// Navigasi
 function showSection(sec){
   document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
   document.getElementById('sec-'+sec).classList.add('active');
@@ -246,12 +261,9 @@ function showSection(sec){
   window.scrollTo(0,0);
 }
 
-// Musik
-const music = document.getElementById('bgMusic');
-function playMusic(){
-  music.play().catch(()=>{});
-}
+// Musik toggle
 function toggleMusic(){
+  const music = document.getElementById('bgMusic');
   if(music.paused){
     music.play();
   }else{
@@ -265,10 +277,10 @@ setInterval(()=>{
   const now = new Date().getTime();
   const distance = weddingDate - now;
   if(distance<0)return;
-  document.getElementById('days').innerText = Math.floor(distance/(1000*60*60*24));
-  document.getElementById('hours').innerText = Math.floor((distance%(1000*60*60*24))/(1000*60*60));
-  document.getElementById('minutes').innerText = Math.floor((distance%(1000*60*60))/(1000*60));
-  document.getElementById('seconds').innerText = Math.floor((distance%(1000*60))/1000);
+  document.getElementById('days').innerText = String(Math.floor(distance/(1000*60*60*24))).padStart(2,'0');
+  document.getElementById('hours').innerText = String(Math.floor((distance%(1000*60*60*24))/(1000*60*60))).padStart(2,'0');
+  document.getElementById('minutes').innerText = String(Math.floor((distance%(1000*60*60))/(1000*60))).padStart(2,'0');
+  document.getElementById('seconds').innerText = String(Math.floor((distance%(1000*60))/1000)).padStart(2,'0');
 },1000);
 </script>
 
