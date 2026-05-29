@@ -76,6 +76,12 @@ section.active{display:block}
 .prewedding-frame{width:100%;max-width:300px;margin:0 auto 30px;border-radius:16px;overflow:hidden;box-shadow:0 6px 20px rgba(0,0,0,0.12);border:6px solid white;}
 .prewedding-frame img{width:100%;height:auto;display:block;}
 
+/* COUNTDOWN */
+.countdown{display:flex;justify-content:center;gap:15px;margin:25px 0;flex-wrap:wrap;}
+.countdown-item{background:var(--maroon);color:white;padding:15px 12px;border-radius:12px;min-width:70px;}
+.countdown-number{font-size:28px;font-weight:600;font-family:'Cormorant Garamond',serif;}
+.countdown-label{font-size:12px;margin-top:5px;opacity:0.9;}
+
 .bottom-nav{position:fixed;bottom:0;left:0;width:100%;background:var(--maroon);display:none;justify-content:space-around;padding:12px 0;z-index:100;}
 .nav-item{color:white;text-align:center;font-size:13px;cursor:pointer;opacity:0.6;padding:5px 10px;}
 .nav-item.active{opacity:1;}
@@ -144,6 +150,27 @@ section.active{display:block}
     <div class="event-card">
       <h2 style="font-family:'Cormorant Garamond',serif;font-size:32px;color:var(--maroon);margin-bottom:15px">RESEPSI</h2>
       <div style="width:80px;height:2px;background:var(--maroon);margin:15px auto"></div>
+      
+      <!-- COUNTDOWN TIMER -->
+      <div class="countdown" id="countdown">
+        <div class="countdown-item">
+          <div class="countdown-number" id="days">0</div>
+          <div class="countdown-label">Hari</div>
+        </div>
+        <div class="countdown-item">
+          <div class="countdown-number" id="hours">0</div>
+          <div class="countdown-label">Jam</div>
+        </div>
+        <div class="countdown-item">
+          <div class="countdown-number" id="minutes">0</div>
+          <div class="countdown-label">Menit</div>
+        </div>
+        <div class="countdown-item">
+          <div class="countdown-number" id="seconds">0</div>
+          <div class="countdown-label">Detik</div>
+        </div>
+      </div>
+
       <div style="font-size:18px;font-weight:500;margin:20px 0">RABU, 10 JUNI 2026</div>
       <div style="font-size:14px;color:#666;margin-bottom:15px">🕒 10.00 WIB s/d Selesai</div>
       <div style="font-weight:600;font-size:16px;margin-bottom:5px">Rumah Makan Laras Slogohimo</div>
@@ -200,6 +227,29 @@ function showSection(id,el){document.querySelectorAll('section').forEach(s=>s.cl
 function toggleMusic(){const music=document.getElementById('bgMusic');const btn=document.getElementById('musicBtn');if(music.paused){music.play();btn.classList.add('playing');}else{music.pause();btn.classList.remove('playing');}}
 function kirimWA(){const nama=document.getElementById('namaTamu').value;const hadir=document.getElementById('kehadiran').value;const pesan=document.getElementById('pesan').value;if(!hadir){alert('Pilih konfirmasi kehadiran dulu ya');return;}const text=`Halo Risky & Anindita,%0A%0ANama: ${nama}%0AKehadiran: ${hadir}%0AUcapan: ${pesan}`;window.open(`https://wa.me/6281234567890?text=${text}`,'_blank');}
 const urlParams=new URLSearchParams(window.location.search);const tamu=urlParams.get('untuk')||'Tamu Undangan';document.getElementById('guestName').innerText=decodeURIComponent(tamu.replace(/\+/g,' '));document.getElementById('namaTamu').value=decodeURIComponent(tamu.replace(/\+/g,' '));
+
+// COUNTDOWN TIMER
+const weddingDate = new Date("2026-06-10T10:00:00").getTime();
+const countdownTimer = setInterval(function() {
+  const now = new Date().getTime();
+  const distance = weddingDate - now;
+  
+  if (distance < 0) {
+    clearInterval(countdownTimer);
+    document.getElementById("countdown").innerHTML = "<div style='font-size:18px;color:var(--maroon);font-weight:600'>Acara Sedang Berlangsung</div>";
+    return;
+  }
+  
+  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+  
+  document.getElementById("days").innerHTML = days;
+  document.getElementById("hours").innerHTML = hours;
+  document.getElementById("minutes").innerHTML = minutes;
+  document.getElementById("seconds").innerHTML = seconds;
+}, 1000);
 </script>
 </body>
   </html>
