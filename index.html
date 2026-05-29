@@ -20,16 +20,16 @@ body{
   color:#333;
 }
 
-/* BACKGROUND WAYANG - PAKAI FOTO LU */
+/* BACKGROUND WAYANG */
 body::before{
   content:'';
   position:fixed;
   top:0;left:0;
   width:100%;height:100%;
-  background-image:url('attachment://0'); /* Ini gambar wayang yang lu upload */
+  background-image:url('https://i.postimg.cc/7hXHNp7r/images-(13).jpg');
   background-size:cover;
   background-position:center;
-  opacity:0.15;
+  opacity:0.12;
   z-index:-1;
 }
 
@@ -41,7 +41,7 @@ body::before{
   justify-content:center;
   align-items:center;
   text-align:center;
-  background:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url('attachment://0') center/cover;
+  background:linear-gradient(rgba(0,0,0,0.55),rgba(0,0,0,0.55)),url('https://i.postimg.cc/7hXHNp7r/images-(13).jpg') center/cover;
   color:white;
 }
 .cover h1{
@@ -130,7 +130,7 @@ body::before{
   margin:15px 5px;
 }
 
-/* FOTO PREWEDDING - 1 FOTO AJA */
+/* FOTO PREWEDDING */
 .prewed-photo{
   display:none;
   margin-top:25px;
@@ -238,7 +238,7 @@ body::before{
     
     <!-- FOTO PREWEDDING -->
     <div class="prewed-photo" id="prewedPhoto">
-      <img src="attachment://0" alt="Intan & Janu">
+      <img src="https://i.postimg.cc/sxKjJtSz/images-(14).jpg" alt="Intan & Janu">
       <p style="margin-top:15px;font-weight:500;font-size:18px">Intan & Janu</p>
     </div>
     
@@ -279,7 +279,7 @@ document.getElementById('openBtn').addEventListener('click',()=>{
   document.getElementById('musicBtn').classList.add('playing');
 });
 
-// Scroll ke acara - FIXED
+// Scroll ke acara
 function scrollToAcara(){
   document.getElementById('acara').scrollIntoView({behavior:'smooth', block:'start'});
 }
