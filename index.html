@@ -7,7 +7,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Poppins',sans-serif;background:#f9f7f5;color:#333;overflow-x:hidden}
+body{font-family:'Poppins',sans-serif;background:#f9f7f5;color:#333}
 
 :root{
   --maroon:#7a1f2a;
@@ -29,14 +29,15 @@ body{font-family:'Poppins',sans-serif;background:#f9f7f5;color:#333;overflow-x:h
   top:0;left:0;
   z-index:100;
   transition:opacity 0.8s, transform 0.8s;
+  pointer-events:auto; /* penting */
 }
 .cover.hide{
   opacity:0;
   transform:translateY(-100%);
   pointer-events:none;
 }
-.cover h3{font-family:'Cormorant Garamond',serif;font-size:16px;letter-spacing:4px;color:var(--maroon);font-weight:400;margin-bottom:20px}
 
+.cover h3{font-family:'Cormorant Garamond',serif;font-size:16px;letter-spacing:4px;color:var(--maroon);font-weight:400;margin-bottom:20px}
 .names{
   font-family:'Cormorant Garamond',serif;
   font-size:42px;
@@ -53,30 +54,19 @@ body{font-family:'Poppins',sans-serif;background:#f9f7f5;color:#333;overflow-x:h
   border-radius:4px;
   font-size:15px;
   cursor:pointer;
-  display:flex;
+  display:inline-flex;
   align-items:center;
   gap:8px;
-  z-index:200;
   position:relative;
+  z-index:9999; /* paling depan */
+  pointer-events:auto; /* pastikan bisa klik */
 }
 .open-btn:active{transform:scale(0.95)}
 
 /* MAIN CONTENT */
 .main{display:none;padding-bottom:70px}
-.section{display:none;min-height:100vh;padding:30px 20px 80px;animation:fadeIn 0.5s}
+.section{display:none;min-height:100vh;padding:30px 20px 80px}
 .section.active{display:block}
-
-@keyframes fadeIn{
-  from{opacity:0}to{opacity:1}
-}
-
-.section-title{
-  font-family:'Cormorant Garamond',serif;
-  font-size:28px;
-  text-align:center;
-  color:var(--maroon);
-  margin-bottom:25px;
-}
 
 .event-card{
   background:white;
@@ -84,7 +74,7 @@ body{font-family:'Poppins',sans-serif;background:#f9f7f5;color:#333;overflow-x:h
   padding:25px 20px;
   text-align:center;
   box-shadow:0 4px 15px rgba(0,0,0,0.08);
-  margin:20px 0;
+  margin:20px;
 }
 .event-card h4{
   font-family:'Cormorant Garamond',serif;
@@ -109,6 +99,7 @@ body{font-family:'Poppins',sans-serif;background:#f9f7f5;color:#333;overflow-x:h
   text-align:center;
   padding:40px 20px;
   border-radius:12px;
+  margin:20px;
 }
 .countdown{
   display:grid;
@@ -145,7 +136,6 @@ body{font-family:'Poppins',sans-serif;background:#f9f7f5;color:#333;overflow-x:h
   padding:5px 8px;
 }
 .nav-item.active{opacity:1}
-.nav-item svg{width:22px;height:22px;margin:0 auto 3px;display:block}
 
 /* MUSIC BUTTON */
 .music-btn{
@@ -178,10 +168,7 @@ body{font-family:'Poppins',sans-serif;background:#f9f7f5;color:#333;overflow-x:h
   <div class="guest-text">Kepada Yth.</div>
   <div class="guest-text">Bapak/Ibu/Saudara/i</div>
   <div class="guest-name" id="guestName">Tamu Undangan</div>
-  <button class="open-btn" onclick="openInvitation()">
-    <svg width="18" height="18" fill="currentColor" viewBox="0 0 20 20"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/></svg>
-    Buka Undangan
-  </button>
+  <button type="button" class="open-btn" id="openBtn">Buka Undangan</button>
 </div>
 
 <!-- MAIN CONTENT -->
@@ -191,7 +178,7 @@ body{font-family:'Poppins',sans-serif;background:#f9f7f5;color:#333;overflow-x:h
     <div style="text-align:center;padding-top:50px">
       <p style="font-size:12px;letter-spacing:3px;color:var(--maroon)">THE WEDDING OF</p>
       <h2 style="font-family:'Cormorant Garamond',serif;font-size:32px;color:var(--maroon);margin:10px 0">INTAN & JANU</h2>
-      <div class="save-date" style="margin-top:40px">
+      <div class="save-date">
         <p>RABU, 10 JUNI 2026</p>
         <p style="letter-spacing:3px;margin:15px 0">SAVE THE DATE</p>
         <div class="countdown" id="countdown">
@@ -205,11 +192,11 @@ body{font-family:'Poppins',sans-serif;background:#f9f7f5;color:#333;overflow-x:h
   </div>
 
   <div class="section" id="sec-event">
-    <h2 class="section-title">Wedding</h2>
+    <h2 style="font-family:'Cormorant Garamond',serif;font-size:28px;text-align:center;color:var(--maroon);margin-bottom:25px">Wedding</h2>
     <div class="event-card">
       <h4>RESEPSI</h4>
       <div style="border-top:1px solid #eee;border-bottom:1px solid #eee;padding:15px 0;margin:15px 0">
-        <p class="date">RABU, 10 JUNI 2026</p>
+        <p>RABU, 10 JUNI 2026</p>
         <p>🕒 10.00 WIB s/d Selesai</p>
         <p style="font-weight:500;margin-top:10px">Rumah Makan Laras Slogohimo</p>
         <p>Soco, Kec. Slogohimo, Kab. Wonogiri</p>
@@ -222,14 +209,8 @@ body{font-family:'Poppins',sans-serif;background:#f9f7f5;color:#333;overflow-x:h
 
 <!-- BOTTOM NAVIGATION -->
 <div class="bottom-nav">
-  <div class="nav-item active" onclick="showSection('cover')">
-    <svg fill="currentColor" viewBox="0 0 20 20"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/></svg>
-    Cover
-  </div>
-  <div class="nav-item" onclick="showSection('event')">
-    <svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"/></svg>
-    Event
-  </div>
+  <div class="nav-item active" onclick="showSection('cover')">Cover</div>
+  <div class="nav-item" onclick="showSection('event')">Event</div>
 </div>
 
 <!-- MUSIC BUTTON -->
@@ -244,15 +225,16 @@ body{font-family:'Poppins',sans-serif;background:#f9f7f5;color:#333;overflow-x:h
 const urlParams = new URLSearchParams(window.location.search);
 const tamu = urlParams.get('to');
 if(tamu){
-  document.getElementById('guestName').innerText = decodeURIComponent(tamu.replace(/\+/g, '));
+  document.getElementById('guestName').innerText = decodeURIComponent(tamu.replace(/\+/g, ''));
 }
 
-// Buka undangan
-function openInvitation(){
+// Fix tombol: pakai addEventListener, bukan onclick inline
+document.getElementById('openBtn').addEventListener('click', function(e){
+  e.preventDefault();
   document.getElementById('cover').classList.add('hide');
   document.getElementById('main').style.display='block';
   playMusic();
-}
+});
 
 // Navigasi section
 function showSection(sec){
@@ -267,17 +249,14 @@ function showSection(sec){
 
 // Musik
 const music = document.getElementById('bgMusic');
-const musicBtn = document.getElementById('musicBtn');
 function playMusic(){
   music.play().catch(()=>{});
 }
 function toggleMusic(){
   if(music.paused){
     music.play();
-    musicBtn.classList.add('playing');
   }else{
     music.pause();
-    musicBtn.classList.remove('playing');
   }
 }
 
