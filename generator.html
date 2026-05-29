@@ -7,15 +7,21 @@
 <style>
 body{font-family:Arial,sans-serif;padding:20px;background:#faf8f5}
 h2{color:#7a1f2a}
-textarea{width:100%;height:150px;padding:10px;border:1px solid #ddd;border-radius:8px;font-size:14px}
+input, textarea, select{width:100%;padding:10px;border:1px solid #ddd;border-radius:8px;font-size:14px;margin-bottom:8px;box-sizing:border-box}
 button{background:#7a1f2a;color:white;border:none;padding:12px 25px;border-radius:8px;margin-top:10px;cursor:pointer;font-size:16px;margin-right:8px}
 .box{background:white;padding:15px;margin-top:15px;border-radius:8px;border:1px solid #ddd}
-.link-item{margin:8px 0;word-break:break-all}
+.link-item{margin:12px 0;word-break:break-all;border-bottom:1px solid #eee;padding-bottom:8px}
 .link-item a{color:#7a1f2a;text-decoration:none}
 .copy-btn{background:#c9a86a;padding:5px 10px;font-size:12px;margin-left:8px;border-radius:5px;border:none;cursor:pointer}
 .action-btns{margin-top:15px}
 .action-btns button{background:#4a4a4a}
 .clear-btn{background:#b33 !important}
+.badge{display:inline-block;padding:3px 8px;border-radius:12px;font-size:12px;margin-left:8px;color:white}
+.badge-pria{background:#3B82F6}
+.badge-wanita{background:#EC4899}
+.form-group{display:flex;gap:8px}
+.form-group input{flex:2}
+.form-group select{flex:1}
 </style>
 
 <script src="https://cdn.sheetjs.com/xlsx-0.20.2/package/dist/xlsx.full.min.js"></script>
@@ -24,13 +30,22 @@ button{background:#7a1f2a;color:white;border:none;padding:12px 25px;border-radiu
 <body>
 
 <h2>Generator Link Undangan</h2>
-<p>Masukkan nama tamu, 1 baris 1 nama:</p>
+<p>Masukkan nama tamu + pilih sisi. 1 baris 1 nama juga bisa:</p>
+
+<div class="form-group">
+  <input type="text" id="namaInput" placeholder="Budi Santoso">
+  <select id="sisiInput">
+    <option value="pria">Sisi Pria</option>
+    <option value="wanita">Sisi Wanita</option>
+  </select>
+  <button onclick="addSingle()">Tambah</button>
+</div>
 
 <textarea id="namaList" placeholder="Budi Santoso
 Siti Aminah
 Pak Joko dan Keluarga"></textarea>
 
-<button onclick="generate()">Buat/Tambah Link</button>
+<button onclick="generate()">Buat/Tambah Link Massal</button>
 <button class="clear-btn" onclick="clearData()">Hapus Semua</button>
 
 <div id="hasil"></div>
@@ -39,22 +54,41 @@ Pak Joko dan Keluarga"></textarea>
 const baseLink = window.location.origin + window.location.pathname.replace('/generator.html', '/') + '?untuk=';
 let guestList = JSON.parse(localStorage.getItem('guestList') || '[]');
 
-// Load data pas halaman dibuka biar gak hilang pas refresh
 window.onload = function(){
   if(guestList.length > 0) render();
 }
 
+function addSingle(){
+  const nama = document.getElementById('namaInput').value.trim();
+  const sisi = document.getElementById('sisiInput').value;
+  if(nama === '') return alert('Nama wajib diisi!');
+  
+  if(!guestList.some(g => g.nama === nama)){
+    guestList.push({nama, sisi});
+    localStorage.setItem('guestList', JSON.stringify(guestList));
+    document.getElementById('namaInput').value = '';
+    render();
+  } else {
+    alert('Nama sudah ada!');
+  }
+}
+
 function generate(){
   const newNames = document.getElementById('namaList').value.trim().split('\n');
+  const sisi = document.getElementById('sisiInput').value;
+  let added = 0;
+  
   newNames.forEach(nama => {
     nama = nama.trim();
-    if(nama !== '' && !guestList.includes(nama)){
-      guestList.push(nama);
+    if(nama !== '' && !guestList.some(g => g.nama === nama)){
+      guestList.push({nama, sisi});
+      added++;
     }
   });
   
   localStorage.setItem('guestList', JSON.stringify(guestList));
   document.getElementById('namaList').value = '';
+  alert(`Berhasil tambah ${added} tamu!`);
   render();
 }
 
@@ -64,20 +98,29 @@ function render(){
     return;
   }
   
-  let html = `<div class="box"><h3>Link Undangan - Total ${guestList.length} tamu:</h3>`;
+  const totalPria = guestList.filter(g => g.sisi === 'pria').length;
+  const totalWanita = guestList.filter(g => g.sisi === 'wanita').length;
   
-  guestList.forEach(nama => {
-    const link = baseLink + encodeURIComponent(nama);
+  let html = `<div class="box">
+    <h3>Link Undangan - Total ${guestList.length} tamu</h3>
+    <p>Pria: ${totalPria} | Wanita: ${totalWanita}</p>`;
+  
+  guestList.forEach(g => {
+    const link = baseLink + encodeURIComponent(g.nama) + '&sisi=' + g.sisi;
+    const badgeClass = g.sisi === 'pria' ? 'badge-pria' : 'badge-wanita';
+    const badgeText = g.sisi === 'pria' ? 'Pria' : 'Wanita';
+    
     html += `<div class="link-item">
-      <strong>${nama}</strong><br>
+      <strong>${g.nama}</strong>
+      <span class="badge ${badgeClass}">${badgeText}</span><br>
       <a href="${link}" target="_blank">${link}</a>
       <button class="copy-btn" onclick="copyLink('${link}')">Copy</button>
     </div>`;
   });
   
   html += `<div class="action-btns">
-    <button onclick="downloadExcel()">Download Semua Excel</button>
-    <button onclick="downloadPDF()">Download Semua PDF</button>
+    <button onclick="downloadExcel()">Download Excel</button>
+    <button onclick="downloadPDF()">Download PDF</button>
   </div>`;
   
   html += '</div>';
@@ -90,9 +133,10 @@ function copyLink(link){
 }
 
 function downloadExcel(){
-  const rows = guestList.map(nama => ({
-    Nama: nama, 
-    Link: baseLink + encodeURIComponent(nama)
+  const rows = guestList.map(g => ({
+    Nama: g.nama, 
+    Sisi: g.sisi,
+    Link: baseLink + encodeURIComponent(g.nama) + '&sisi=' + g.sisi
   }));
   
   const ws = XLSX.utils.json_to_sheet(rows);
@@ -111,9 +155,9 @@ function downloadPDF(){
   y += 10;
   doc.setFontSize(9);
   
-  guestList.forEach((nama, i) => {
-    const link = baseLink + encodeURIComponent(nama);
-    const text = `${i+1}. ${nama}: ${link}`;
+  guestList.forEach((g, i) => {
+    const link = baseLink + encodeURIComponent(g.nama) + '&sisi=' + g.sisi;
+    const text = `${i+1}. ${g.nama} [${g.sisi}]: ${link}`;
     const lines = doc.splitTextToSize(text, 180);
     doc.text(lines, 10, y);
     y += lines.length * 5 + 3;
