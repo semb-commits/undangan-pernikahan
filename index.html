@@ -3,109 +3,453 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Undangan Pernikahan</title>
+<title>Intan & Janu - Undangan Pernikahan</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-html,body{
-  margin:0;
-  padding:0;
-  height:100%;
-  font-family:Arial, sans-serif;
-  background:#f9f7f5;
+:root{
+  --maroon:#7a1f2a;
+  --cream:#f9f7f5;
+  --gold:#c9a86a;
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Montserrat',sans-serif;
+  background:var(--cream);
+  color:#333;
+  overflow-x:hidden;
+}
+
+/* LOADING */
+.loader{
+  position:fixed;
+  top:0;left:0;
+  width:100%;height:100%;
+  background:var(--cream);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  z-index:9999;
+  transition:opacity 0.8s;
+}
+.loader.hide{
+  opacity:0;
+  pointer-events:none;
+}
+.loader span{
+  font-family:'Cormorant Garamond',serif;
+  font-size:24px;
+  color:var(--maroon);
+  animation:pulse 1.5s infinite;
+}
+@keyframes pulse{
+ 0%,100%{opacity:1}
+ 50%{opacity:0.4}
 }
 
 /* COVER */
-#cover{
-  position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
-  background:#f9f7f5;
+.cover{
+  height:100vh;
   display:flex;
   flex-direction:column;
   justify-content:center;
   align-items:center;
   text-align:center;
-  z-index:9999;
+  background:linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)),url('https://images.unsplash.com/photo-1519741497674-611481863552?w=800') center/cover;
+  color:white;
+  position:relative;
+  overflow:hidden;
 }
-#cover.hide{
-  display:none;
+.cover::before{
+  content:'';
+  position:absolute;
+  top:-50%;
+  left:-50%;
+  width:200%;
+  height:200%;
+  background:radial-gradient(circle,rgba(255,255,255,0.1) 0%,transparent 70%);
+  animation:rotate 20s linear infinite;
 }
-
-#cover h3{
-  font-size:16px;
-  letter-spacing:4px;
-  color:#7a1f2a;
-  margin-bottom:20px;
+@keyframes rotate{
+ 100%{transform:rotate(360deg)}
 }
-#cover h1{
-  font-size:42px;
-  color:#7a1f2a;
-  margin:10px 0;
+.cover-content{
+  position:relative;
+  z-index:2;
+  animation:fadeUp 1.2s ease-out;
 }
-#cover p{
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(30px)}
+  to{opacity:1;transform:translateY(0)}
+}
+.cover h3{
   font-size:14px;
-  color:#666;
-  margin:5px 0;
+  letter-spacing:5px;
+  font-weight:400;
 }
-#cover button{
-  margin-top:25px;
-  background:#7a1f2a;
+.cover h1{
+  font-family:'Cormorant Garamond',serif;
+  font-size:52px;
+  margin:15px 0;
+  font-weight:600;
+}
+.guest-name{
+  font-size:20px;
+  margin:20px 0;
+  font-weight:500;
+}
+.open-btn{
+  background:var(--gold);
   color:white;
   border:none;
-  padding:15px 40px;
+  padding:15px 45px;
+  border-radius:50px;
   font-size:16px;
-  border-radius:5px;
   cursor:pointer;
-  /* ini kunci biar bisa di klik */
-  position:relative;
-  z-index:10000;
-  pointer-events:auto !important;
+  margin-top:20px;
+  transition:transform 0.3s,box-shadow 0.3s;
+  box-shadow:0 5px 20px rgba(0,0,0,0.3);
+}
+.open-btn:hover{
+  transform:translateY(-3px);
+  box-shadow:0 8px 25px rgba(0,0,0,0.4);
 }
 
-/* MAIN */
-#main{
+/* MAIN CONTENT */
+.main{
   display:none;
-  padding:40px 20px;
+  opacity:0;
+  transition:opacity 1s;
+}
+.main.show{
+  display:block;
+  opacity:1;
+}
+
+.section{
+  padding:80px 20px;
+  max-width:800px;
+  margin:0 auto;
   text-align:center;
 }
-#main h2{
-  color:#7a1f2a;
+.section h2{
+  font-family:'Cormorant Garamond',serif;
+  font-size:36px;
+  color:var(--maroon);
+  margin-bottom:20px;
 }
+.section p{
+  line-height:1.8;
+  color:#555;
+}
+
+/* COUPLE */
+.couple{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:40px;
+  margin-top:40px;
+}
+.person{
+  flex:1 1 250px;
+}
+.person img{
+  width:200px;
+  height:200px;
+  border-radius:50%;
+  object-fit:cover;
+  border:5px solid var(--gold);
+  margin-bottom:15px;
+}
+.person h3{
+  font-family:'Cormorant Garamond',serif;
+  font-size:28px;
+  color:var(--maroon);
+}
+
+/* COUNTDOWN */
+.countdown{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:15px;
+  max-width:400px;
+  margin:40px auto;
+}
+.time-box{
+  background:var(--maroon);
+  color:white;
+  padding:20px 10px;
+  border-radius:12px;
+}
+.time-box span{
+  display:block;
+  font-size:32px;
+  font-weight:600;
+}
+
+/* EVENT CARD */
+.event-card{
+  background:white;
+  padding:40px 30px;
+  border-radius:15px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.1);
+  margin-top:30px;
+}
+.map-btn{
+  display:inline-block;
+  background:var(--maroon);
+  color:white;
+  padding:12px 30px;
+  border-radius:50px;
+  text-decoration:none;
+  margin-top:20px;
+  transition:transform 0.3s;
+}
+.map-btn:hover{
+  transform:scale(1.05);
+}
+
+/* GALLERY */
+.gallery{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  gap:10px;
+  margin-top:30px;
+}
+.gallery img{
+  width:100%;
+  height:200px;
+  object-fit:cover;
+  border-radius:10px;
+  cursor:pointer;
+  transition:transform 0.3s;
+}
+.gallery img:hover{
+  transform:scale(1.05);
+}
+
+/* RSVP FORM */
+.rsvp-form{
+  max-width:500px;
+  margin:30px auto;
+  text-align:left;
+}
+.rsvp-form input, .rsvp-form select, .rsvp-form textarea{
+  width:100%;
+  padding:12px;
+  margin-bottom:15px;
+  border:1px solid #ddd;
+  border-radius:8px;
+  font-family:inherit;
+}
+.rsvp-form button{
+  width:100%;
+  background:var(--maroon);
+  color:white;
+  border:none;
+  padding:15px;
+  border-radius:8px;
+  cursor:pointer;
+  font-size:16px;
+}
+
+/* MUSIC BUTTON */
+.music-btn{
+  position:fixed;
+  bottom:30px;
+  right:30px;
+  width:55px;
+  height:55px;
+  background:white;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  box-shadow:0 5px 20px rgba(0,0,0,0.2);
+  cursor:pointer;
+  z-index:100;
+}
+.music-btn.playing{
+  animation:spin 3s linear infinite;
+}
+@keyframes spin{
+ 100%{transform:rotate(360deg)}
+}
+
+/* RESPONSIVE */
+@media(max-width:600px){
+  .cover h1{font-size:38px}
+  .section{padding:60px 20px}
 </style>
 </head>
 <body>
 
-<!-- COVER -->
-<div id="cover">
-  <h3>THE WEDDING OF</h3>
-  <h1>INTAN & JANU</h1>
-  <p>Kepada Yth.</p>
-  <p>Bapak/Ibu/Saudara/i</p>
-  <p style="font-size:20px;font-weight:bold;margin-top:10px;">Tamu Undangan</p>
-  <button id="openBtn">Buka Undangan</button>
+<!-- LOADING -->
+<div class="loader" id="loader">
+  <span>Intan & Janu</span>
 </div>
 
-<!-- MAIN CONTENT -->
-<div id="main">
-  <h2>Selamat Datang</h2>
-  <p>Ini isi undangan nya</p>
-  <p>Rabu, 10 Juni 2026</p>
-  <p>Rumah Makan Laras Slogohimo</p>
+<!-- COVER -->
+<div class="cover">
+  <div class="cover-content">
+    <h3>THE WEDDING OF</h3>
+    <h1>INTAN & JANU</h1>
+    <p>Kepada Yth.</p>
+    <div class="guest-name" id="guestName">Tamu Undangan</div>
+    <button class="open-btn" id="openBtn">Buka Undangan</button>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="main" id="main">
+  
+  <!-- COUPLE SECTION -->
+  <div class="section">
+    <h2>Mempelai</h2>
+    <p>Dengan memohon Rahmat dan Ridho Allah SWT, kami mengundang Bapak/Ibu/Saudara/i untuk hadir di acara pernikahan kami.</p>
+    
+    <div class="couple">
+      <div class="person">
+        <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8b17?w=400" alt="Intan">
+        <h3>Intan</h3>
+        <p>Putri dari Bpk. Ahmad & Ibu Siti</p>
+      </div>
+      <div class="person">
+        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400" alt="Janu">
+        <h3>Janu</h3>
+        <p>Putra dari Bpk. Budi & Ibu Ani</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- DATE SECTION -->
+  <div class="section" style="background:white">
+    <h2>Save The Date</h2>
+    <p>RABU, 10 JUNI 2026</p>
+    <div class="countdown">
+      <div class="time-box"><span id="days">00</span><small>Hari</small></div>
+      <div class="time-box"><span id="hours">00</span><small>Jam</small></div>
+      <div class="time-box"><span id="hours">00</span><small>Menit</small></div>
+      <div class="time-box"><span id="seconds">00</span><small>Detik</small></div>
+    </div>
+  </div>
+
+  <!-- EVENT SECTION -->
+  <div class="section">
+    <h2>Acara</h2>
+    <div class="event-card">
+      <h3 style="font-family:'Cormorant Garamond',serif;font-size:28px;color:var(--maroon)">RESEPSI</h3>
+      <p style="margin:15px 0">🕒 10.00 WIB s/d Selesai</p>
+      <p><strong>Rumah Makan Laras Slogohimo</strong></p>
+      <p>Soco, Kec. Slogohimo, Kab. Wonogiri</p>
+      <a href="https://maps.app.goo.gl/CRnwdci4uBSDLHQ99" target="_blank" class="map-btn">📍 Buka Google Maps</a>
+    </div>
+  </div>
+
+  <!-- GALLERY SECTION -->
+  <div class="section" style="background:white">
+    <h2>Galeri</h2>
+    <div class="gallery">
+      <img src="https://images.unsplash.com/photo-1511285560929-86b456f84bd1?w=400" alt="">
+      <img src="https://images.unsplash.com/photo-1511798783279-43f20267cb1d?w=400" alt="">
+      <img src="https://images.unsplash.com/photo-1511285560929-86b456f84bd1?w=400" alt="">
+      <img src="https://images.unsplash.com/photo-1522673607200-65e74d5b1ce0?w=400" alt="">
+    </div>
+  </div>
+
+  <!-- RSVP SECTION -->
+  <div class="section">
+    <h2>Konfirmasi Kehadiran</h2>
+    <p>Merupakan kehormatan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir.</p>
+    
+    <div class="rsvp-form">
+      <input type="text" id="namaTamu" placeholder="Nama Anda" readonly>
+      <select id="kehadiran">
+        <option value="">Konfirmasi Kehadiran</option>
+        <option value="Hadir">Hadir</option>
+        <option value="Tidak Hadir">Tidak Hadir</option>
+      </select>
+      <textarea id="pesan" rows="3" placeholder="Ucapan & Doa"></textarea>
+      <button onclick="kirimWA()">Kirim ke WhatsApp</button>
+    </div>
+  </div>
+
+</div>
+
+<!-- MUSIC -->
+<audio id="bgMusic" loop>
+  <source src="https://cdn.pixabay.com/audio/2024/11/16/audio_6b4c4c3a7b.mp3" type="audio/mpeg">
+</audio>
+<div class="music-btn" id="musicBtn" onclick="toggleMusic()">
+  ♪
 </div>
 
 <script>
-document.addEventListener('DOMContentLoaded', function(){
-  var btn = document.getElementById('openBtn');
-  var cover = document.getElementById('cover');
-  var main = document.getElementById('main');
-  
-  btn.onclick = function(){
-    cover.classList.add('hide');
-    main.style.display = 'block';
-  }
+// Loading screen
+window.addEventListener('load',()=>{
+  setTimeout(()=>{
+    document.getElementById('loader').classList.add('hide');
+  },1500);
 });
+
+// Ambil nama tamu dari URL
+const urlParams = new URLSearchParams(window.location.search);
+const tamu = urlParams.get('untuk') || urlParams.get('to');
+if(tamu){
+  document.getElementById('guestName').innerText = decodeURIComponent(tamu.replace(/\+/g,' '));
+  document.getElementById('namaTamu').value = decodeURIComponent(tamu.replace(/\+/g,' '));
+}
+
+// Buka undangan
+document.getElementById('openBtn').addEventListener('click',()=>{
+  document.querySelector('.cover').style.display='none';
+  document.getElementById('main').classList.add('show');
+  document.getElementById('bgMusic').play().catch(()=>{});
+  document.getElementById('musicBtn').classList.add('playing');
+});
+
+// Musik toggle
+function toggleMusic(){
+  const music = document.getElementById('bgMusic');
+  const btn = document.getElementById('musicBtn');
+  if(music.paused){
+    music.play();
+    btn.classList.add('playing');
+  }else{
+    music.pause();
+    btn.classList.remove('playing');
+  }
+}
+
+// Countdown
+const weddingDate = new Date("Jun 10, 2026 10:00:00").getTime();
+setInterval(()=>{
+  const now = new Date().getTime();
+  const distance = weddingDate - now;
+  if(distance<0)return;
+  document.getElementById('days').innerText = String(Math.floor(distance/(1000*60*60*24))).padStart(2,'0');
+  document.getElementById('hours').innerText = String(Math.floor((distance%(1000*60*60*24))/(1000*60*60))).padStart(2,'0');
+  document.getElementById('minutes').innerText = String(Math.floor((distance%(1000*60*60))/(1000*60))).padStart(2,'0');
+  document.getElementById('seconds').innerText = String(Math.floor((distance%(1000*60))/1000)).padStart(2,'0');
+},1000);
+
+// Kirim RSVP ke WA
+function kirimWA(){
+  const nama = document.getElementById('namaTamu').value;
+  const hadir = document.getElementById('kehadiran').value;
+  const pesan = document.getElementById('pesan').value;
+  
+  if(!hadir){
+    alert('Pilih konfirmasi kehadiran dulu ya');
+    return;
+  }
+  
+  const text = `Halo Intan & Janu,%0A%0ANama: ${nama}%0AKehadiran: ${hadir}%0AUcapan: ${pesan}`;
+  window.open(`https://wa.me/6281234567890?text=${text}`, '_blank');
+}
 </script>
 
 </body>
-</html>
+  </html>
