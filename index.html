@@ -29,7 +29,7 @@ body{font-family:'Poppins',sans-serif;background:#f9f7f5;color:#333}
   top:0;left:0;
   z-index:100;
   transition:opacity 0.8s, transform 0.8s;
-  pointer-events:auto; /* penting */
+  pointer-events:auto;
 }
 .cover.hide{
   opacity:0;
@@ -58,8 +58,8 @@ body{font-family:'Poppins',sans-serif;background:#f9f7f5;color:#333}
   align-items:center;
   gap:8px;
   position:relative;
-  z-index:9999; /* paling depan */
-  pointer-events:auto; /* pastikan bisa klik */
+  z-index:9999;
+  pointer-events:auto;
 }
 .open-btn:active{transform:scale(0.95)}
 
@@ -137,7 +137,6 @@ body{font-family:'Poppins',sans-serif;background:#f9f7f5;color:#333}
 }
 .nav-item.active{opacity:1}
 
-/* MUSIC BUTTON */
 .music-btn{
   position:fixed;
   bottom:80px;
@@ -221,14 +220,14 @@ body{font-family:'Poppins',sans-serif;background:#f9f7f5;color:#333}
 </div>
 
 <script>
-// Ambil nama tamu dari URL ?to=Nama
+// Fix: baca parameter ?untuk= dan ?to=
 const urlParams = new URLSearchParams(window.location.search);
-const tamu = urlParams.get('to');
+const tamu = urlParams.get('untuk') || urlParams.get('to');
 if(tamu){
-  document.getElementById('guestName').innerText = decodeURIComponent(tamu.replace(/\+/g, ''));
+  document.getElementById('guestName').innerText = decodeURIComponent(tamu.replace(/\+/g, '));
 }
 
-// Fix tombol: pakai addEventListener, bukan onclick inline
+// Tombol buka undangan
 document.getElementById('openBtn').addEventListener('click', function(e){
   e.preventDefault();
   document.getElementById('cover').classList.add('hide');
