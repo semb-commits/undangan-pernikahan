@@ -3,7 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
 <title>risky & anindita - Undangan Pernikahan</title>
+
+<!-- Meta Tag untuk Preview WhatsApp -->
+<meta property="og:title" content="Undangan Pernikahan Risky & Anindita">
+<meta property="og:description" content="Minggu, 10 Juni 2026 - Tanpa mengurangi rasa hormat, kami mengundang Anda">
+<meta property="og:image" content="https://semb-commits.github.io/undangan-pernikahan/preweding.jpeg?v2">
+<meta property="og:url" content="https://semb-commits.github.io/undangan-pernikahan/">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#7a1f2a">
 
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Great+Vibes&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
 
@@ -172,7 +181,7 @@ section.active{display:block}
 <div class="music-btn" id="musicBtn" onclick="toggleMusic()">♪</div>
 
 <script>
-document.getElementById('prewedImg').src='https://semb-commits.github.io/undangan-pernikahan/preweding.jpeg?t='+Date.now();
+document.getElementById('prewedImg').src='https://semb-commits.github.io/undangan-pernikahan/preweding.jpeg?v2';
 document.getElementById('openBtn').addEventListener('click',()=>{document.getElementById('cover').style.display='none';document.getElementById('main').style.display='block';document.getElementById('bottomNav').style.display='flex';document.getElementById('musicBtn').style.display='flex';const music=document.getElementById('bgMusic');music.volume=0.4;music.play().catch(()=>{});});
 function showSection(id,el){document.querySelectorAll('section').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));el.classList.add('active');}
 function toggleMusic(){const music=document.getElementById('bgMusic');const btn=document.getElementById('musicBtn');if(music.paused){music.play();btn.classList.add('playing');}else{music.pause();btn.classList.remove('playing');}}
@@ -180,4 +189,4 @@ function kirimWA(){const nama=document.getElementById('namaTamu').value;const ha
 const urlParams=new URLSearchParams(window.location.search);const tamu=urlParams.get('untuk')||'Tamu Undangan';document.getElementById('guestName').innerText=decodeURIComponent(tamu.replace(/\+/g,' '));document.getElementById('namaTamu').value=decodeURIComponent(tamu.replace(/\+/g,' '));
 </script>
 </body>
-      </html>
+  </html>
