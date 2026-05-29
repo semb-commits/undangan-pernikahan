@@ -1,0 +1,26 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Risky Anindita Wedding//ID
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:risky-anindita-20260610@semb-commits.github.io
+DTSTAMP:20251004T120000Z
+DTSTART:20260610T030000Z
+DTEND:20260610T060000Z
+SUMMARY:Pernikahan Risky & Anindita
+DESCRIPTION:Jangan lupa hadir ya! Lokasi: Rumah Makan Laras Slogohimo
+LOCATION:Rumah Makan Laras Slogohimo, Soco, Kec. Slogohimo, Kab. Wonogiri
+URL:https://semb-commits.github.io/undangan-pernikahan/
+BEGIN:VALARM
+TRIGGER:-P1D
+DESCRIPTION:Besok ada pernikahan Risky & Anindita
+ACTION:DISPLAY
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-PT1H
+DESCRIPTION:1 jam lagi pernikahan Risky & Anindita
+ACTION:DISPLAY
+END:VALARM
+END:VEVENT
+END:VCALENDAR
