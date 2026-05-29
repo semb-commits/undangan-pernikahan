@@ -348,6 +348,22 @@ section.active{display:block}
 @keyframes slideUp{
   from{transform:translateY(50px);opacity:0}
   to{transform:translateY(0);opacity:0.15}
+}
+
+/* PREWEDDING FRAME - YANG BARU */
+.prewedding-frame{
+  width:100%;
+  max-width:350px;
+  margin:0 auto 25px;
+  border-radius:20px;
+  overflow:hidden;
+  box-shadow:0 8px 25px rgba(0,0,0,0.15);
+}
+.prewedding-frame img{
+  width:100%;
+  height:auto;
+  display:block;
+}
 </style>
 </head>
 <body>
@@ -454,9 +470,15 @@ section.active{display:block}
     </div>
   </section>
 
-  <!-- SECTION RSVP -->
+  <!-- SECTION RSVP - UDAH DITAMBAH FOTO -->
   <section id="rsvp">
     <div style="max-width:500px;margin:0 auto;text-align:center">
+
+      <!-- FOTO PREWEDDING -->
+      <div class="prewedding-frame">
+        <img src="https://semb-commits.github.io/undangan-pernikahan/preweding.jpeg" alt="Risky & Anindita Prewedding">
+      </div>
+
       <h2 style="font-family:'Cormorant Garamond',serif;font-size:32px;color:var(--maroon);margin-bottom:25px">Konfirmasi Kehadiran</h2>
       <input type="text" id="namaTamu" placeholder="Nama Anda" readonly style="width:100%;padding:12px;margin-bottom:12px;border:1px solid #ddd;border-radius:8px">
       <select id="kehadiran" style="width:100%;padding:12px;margin-bottom:12px;border:1px solid #ddd;border-radius:8px">
