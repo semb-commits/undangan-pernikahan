@@ -8,304 +8,62 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Great+Vibes&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
 
 <style>
-:root{
-  --maroon:#7a1f2a;
-  --cream:#faf8f5;
-  --gold:#c9a86a;
-}
-
+:root{--maroon:#7a1f2a;--cream:#faf8f5;--gold:#c9a86a;}
 *{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{
-  font-family:'Montserrat',sans-serif;
-  background:var(--cream);
-  color:#333;
-  padding-bottom:80px;
-}
-
-section{
-  min-height:100vh;
-  padding:40px 20px 80px;
-  display:none;
-  animation:fadeIn 0.5s;
-  position:relative;
-}
+body{font-family:'Montserrat',sans-serif;background:var(--cream);color:#333;padding-bottom:80px;}
+section{min-height:100vh;padding:40px 20px 80px;display:none;position:relative;}
 section.active{display:block}
 
-@keyframes fadeIn{
-  from{opacity:0;transform:translateY(20px)}
-  to{opacity:1;transform:translateY(0)}
-}
+.cover{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;background:#f8f5f2;padding:30px 20px;position:relative;overflow:hidden;}
+.cover-title{font-family:'Cormorant Garamond',serif;font-size:16px;letter-spacing:3px;color:var(--maroon);margin-bottom:20px;z-index:2;position:relative;}
+.cover-names{font-family:'Great Vibes',cursive;font-size:48px;color:var(--maroon);line-height:1.2;margin-bottom:30px;z-index:2;position:relative;}
+.frame{width:240px;height:300px;margin:0 auto 25px;position:relative;z-index:2;}
+.frame::before{content:'';position:absolute;top:-15px;left:-15px;right:-15px;bottom:-15px;border:3px solid var(--gold);border-radius:50% 50% 0 0 / 60% 60% 0 0;}
+.photo{width:100%;height:100%;object-fit:cover;border-radius:50% 50% 0 0 / 60% 60% 0 0;}
+.open-btn{background:var(--maroon);color:white;border:none;padding:14px 40px;border-radius:25px;font-size:16px;cursor:pointer;z-index:2;position:relative;}
 
-/* COVER */
-.cover{
-  min-height:100vh;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  text-align:center;
-  background:#f8f5f2;
-  padding:30px 20px;
-  position:relative;
-  overflow:hidden;
-}
-.cover-title{
-  font-family:'Cormorant Garamond',serif;
-  font-size:16px;
-  letter-spacing:3px;
-  color:var(--maroon);
-  margin-bottom:20px;
-  animation:fadeDown 1s ease-out;
-}
-.cover-names{
-  font-family:'Great Vibes',cursive;
-  font-size:48px;
-  color:var(--maroon);
-  line-height:1.2;
-  margin-bottom:30px;
-  animation:fadeUp 1.2s ease-out;
-}
-.frame{
-  width:240px;
-  height:300px;
-  margin:0 auto 25px;
-  position:relative;
-  animation:scaleIn 1.5s ease-out;
-}
-.frame::before{
-  content:'';
-  position:absolute;
-  top:-15px; left:-15px; right:-15px; bottom:-15px;
-  border:3px solid var(--gold);
-  border-radius:50% 50% 0 0 / 60% 60% 0 0;
-}
-.photo{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  border-radius:50% 50% 0 0 / 60% 60% 0 0;
-}
-.open-btn{
-  background:var(--maroon);
-  color:white;
-  border:none;
-  padding:14px 40px;
-  border-radius:25px;
-  font-size:16px;
-  cursor:pointer;
-  animation:fadeUp 1.8s ease-out;
-}
+.wayang-bg{position:absolute;top:0;left:0;width:100%;height:200px;opacity:0.25;z-index:1;pointer-events:none;}
+.wayang-bg img{position:absolute;width:160px;height:auto;animation:fadeSlide 1.5s ease-out;}
+.wayang-bg img:first-child{left:-15px;top:15px;transform:rotate(-15deg);}
+.wayang-bg img:last-child{right:-15px;top:15px;transform:rotate(15deg) scaleX(-1);animation-delay:0.3s;}
 
-/* WAYANG BACKGROUND */
-.wayang-bg{
-  position:absolute;
-  top:0;
-  left:0;
-  width:100%;
-  height:200px;
-  opacity:0.25;
-  z-index:1;
-  pointer-events:none;
-}
-.wayang-bg img{
-  position:absolute;
-  width:160px;
-  height:auto;
-  animation:fadeSlide 1.5s ease-out;
-}
-.wayang-bg img:first-child{
-  left:-15px;
-  top:15px;
-  transform:rotate(-15deg);
-}
-.wayang-bg img:last-child{
-  right:-15px;
-  top:15px;
-  transform:rotate(15deg) scaleX(-1);
-  animation-delay:0.3s;
-}
+.gunungan-frame{position:relative;width:280px;margin:0 auto 20px;z-index:2;}
+.gunungan-frame::before{content:'';position:absolute;top:-20px;left:50%;transform:translateX(-50%);width:200px;height:220px;background:radial-gradient(circle at top,#7a1f2a 0%,#5a1720 100%);clip-path:polygon(50% 0%,0% 100%,100% 100%);z-index:0;}
+.photo-frame{position:relative;width:200px;height:260px;margin:0 auto;border-radius:120px 120px 20px 20px;overflow:hidden;border:5px solid white;box-shadow:0 8px 25px rgba(0,0,0,0.15);z-index:2;background:white;}
+.photo-frame img{width:100%;height:100%;object-fit:cover;}
 
-/* GUNGAN FRAME */
-.gunungan-frame{
-  position:relative;
-  width:280px;
-  margin:0 auto 20px;
-  z-index:2;
-}
-.gunungan-frame::before{
-  content:'';
-  position:absolute;
-  top:-20px;
-  left:50%;
-  transform:translateX(-50%);
-  width:200px;
-  height:220px;
-  background:radial-gradient(circle at top, #7a1f2a 0%, #5a1720 100%);
-  clip-path:polygon(50% 0%, 0% 100%, 100% 100%);
-  z-index:0;
-}
-.photo-frame{
-  position:relative;
-  width:200px;
-  height:260px;
-  margin:0 auto;
-  border-radius:120px 120px 20px 20px;
-  overflow:hidden;
-  border:5px solid white;
-  box-shadow:0 8px 25px rgba(0,0,0,0.15);
-  z-index:2;
-  background:white;
-}
-.photo-frame img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-}
+.couple-card{text-align:center;margin-bottom:50px;position:relative;z-index:2;}
+.name-script{font-family:'Great Vibes',cursive;font-size:36px;color:#999;margin:15px 0 5px;}
+.name-main{font-family:'Cormorant Garamond',serif;font-size:24px;color:var(--maroon);font-weight:600;margin-bottom:10px;}
+.address{font-size:14px;color:#666;line-height:1.5;}
+.divider{display:flex;align-items:center;justify-content:center;margin:30px 0;color:#999;position:relative;z-index:2;}
+.divider::before,.divider::after{content:'';flex:1;height:1px;background:#ddd;margin:0 15px;}
 
-/* ANIMASI */
-@keyframes fadeDown{
-  from{opacity:0;transform:translateY(-30px)}
-  to{opacity:1;transform:translateY(0)}
-}
-@keyframes fadeUp{
-  from{opacity:0;transform:translateY(30px)}
-  to{opacity:1;transform:translateY(0)}
-}
-@keyframes scaleIn{
-  from{transform:scale(0.8);opacity:0}
-  to{transform:scale(1);opacity:1}
+.event-card{background:white;padding:35px 25px;border-radius:20px;box-shadow:0 10px 30px rgba(0,0,0,0.08);text-align:center;max-width:500px;margin:0 auto;position:relative;z-index:2;}
+.prewedding-frame{width:100%;max-width:300px;margin:0 auto 30px;border-radius:16px;overflow:hidden;box-shadow:0 6px 20px rgba(0,0,0,0.12);border:6px solid white;}
+.prewedding-frame img{width:100%;height:auto;display:block;}
+
+.bottom-nav{position:fixed;bottom:0;left:0;width:100%;background:var(--maroon);display:none;justify-content:space-around;padding:12px 0;z-index:100;}
+.nav-item{color:white;text-align:center;font-size:13px;cursor:pointer;opacity:0.6;padding:5px 10px;}
+.nav-item.active{opacity:1;}
+.nav-item svg{width:24px;height:24px;display:block;margin:0 auto 4px;fill:white;}
+
+.music-btn{position:fixed;bottom:90px;right:20px;width:52px;height:52px;background:white;border-radius:50%;display:none;align-items:center;justify-content:center;box-shadow:0 5px 20px rgba(0,0,0,0.2);cursor:pointer;z-index:100;font-size:20px;}
+
 @keyframes fadeSlide{
   from{opacity:0;transform:translateY(30px)}
   to{opacity:1;transform:translateY(0)}
 }
-
-/* COUPLE */
-.couple-card{
-  text-align:center;
-  margin-bottom:50px;
-  position:relative;
-  z-index:2;
-}
-.name-script{
-  font-family:'Great Vibes',cursive;
-  font-size:36px;
-  color:#999;
-  margin:15px 0 5px;
-}
-.name-main{
-  font-family:'Cormorant Garamond',serif;
-  font-size:24px;
-  color:var(--maroon);
-  font-weight:600;
-  margin-bottom:10px;
-}
-.address{
-  font-size:14px;
-  color:#666;
-  line-height:1.5;
-}
-.divider{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  margin:30px 0;
-  color:#999;
-  position:relative;
-  z-index:2;
-}
-.divider::before,
-.divider::after{
-  content:'';
-  flex:1;
-  height:1px;
-  background:#ddd;
-  margin:0 15px;
-}
-
-/* EVENT */
-.event-card{
-  background:white;
-  padding:35px 25px;
-  border-radius:20px;
-  box-shadow:0 10px 30px rgba(0,0,0,0.08);
-  text-align:center;
-  max-width:500px;
-  margin:0 auto;
-  position:relative;
-  z-index:2;
-}
-
-/* RSVP + PREWEDDING */
-.prewedding-frame{
-  width:100%;
-  max-width:300px;
-  margin:0 auto 30px;
-  border-radius:16px;
-  overflow:hidden;
-  box-shadow:0 6px 20px rgba(0,0,0,0.12);
-  border:6px solid white;
-}
-.prewedding-frame img{
-  width:100%;
-  height:auto;
-  display:block;
-}
-
-/* NAV */
-.bottom-nav{
-  position:fixed;
-  bottom:0;
-  left:0;
-  width:100%;
-  background:var(--maroon);
-  display:none;
-  justify-content:space-around;
-  padding:12px 0;
-  z-index:100;
-}
-.nav-item{
-  color:white;
-  text-align:center;
-  font-size:13px;
-  cursor:pointer;
-  opacity:0.6;
-  padding:5px 10px;
-}
-.nav-item.active{opacity:1;}
-.nav-item svg{
-  width:24px;
-  height:24px;
-  display:block;
-  margin:0 auto 4px;
-  fill:white;
-}
-
-/* MUSIC BUTTON */
-.music-btn{
-  position:fixed;
-  bottom:90px;
-  right:20px;
-  width:52px;
-  height:52px;
-  background:white;
-  border-radius:50%;
-  display:none;
-  align-items:center;
-  justify-content:center;
-  box-shadow:0 5px 20px rgba(0,0,0,0.2);
-  cursor:pointer;
-  z-index:100;
-  font-size:20px;
-}
-.music-btn.playing{animation:spin 3s linear infinite}
-@keyframes spin{100%{transform:rotate(360deg)}}
 </style>
 </head>
 <body>
 
-<!-- COVER -->
 <div class="cover" id="cover">
+  <div class="wayang-bg">
+    <img src="https://i.postimg.cc/7hXHNp7r/images-(13).jpg" alt="">
+    <img src="https://i.postimg.cc/7hXHNp7r/images-(13).jpg" alt="">
+  </div>
+  
   <p class="cover-title">THE WEDDING OF</p>
   <h1 class="cover-names">risky & anindita</h1>
 
@@ -313,55 +71,37 @@ section.active{display:block}
     <img src="https://i.postimg.cc/sxKjJtSz/images-(14).jpg" alt="Foto Mempelai" class="photo">
   </div>
 
-  <p style="font-size:14px;color:#666;margin-bottom:8px">Kepada Yth.</p>
-  <h2 id="guestName" style="font-family:'Cormorant Garamond',serif;font-size:24px;color:var(--maroon);margin-bottom:25px">Tamu Undangan</h2>
+  <p style="font-size:14px;color:#666;margin-bottom:8px;z-index:2;position:relative">Kepada Yth.</p>
+  <h2 id="guestName" style="font-family:'Cormorant Garamond',serif;font-size:24px;color:var(--maroon);margin-bottom:25px;z-index:2;position:relative">Tamu Undangan</h2>
 
   <button class="open-btn" id="openBtn">✉️ Buka Undangan</button>
 </div>
 
-<!-- MAIN CONTENT -->
 <div id="main" style="display:none">
-
   <section id="couple" class="active">
-    <!-- WAYANG BACKGROUND -->
     <div class="wayang-bg">
       <img src="https://i.postimg.cc/7hXHNp7r/images-(13).jpg" alt="">
       <img src="https://i.postimg.cc/7hXHNp7r/images-(13).jpg" alt="">
     </div>
 
     <div style="text-align:center;padding:30px 20px;font-size:14px;line-height:1.6;color:#555;position:relative;z-index:2">
-      Tanpa mengurangi rasa hormat dengan ini kami mengundang<br>
-      Bapak/Ibu/Saudara/i untuk hadir pada acara pernikahan kami
+      Tanpa mengurangi rasa hormat dengan ini kami mengundang<br>Bapak/Ibu/Saudara/i untuk hadir pada acara pernikahan kami
     </div>
 
     <div class="couple-card">
-      <div class="gunungan-frame">
-        <div class="photo-frame">
-          <img src="https://i.postimg.cc/sxKjJtSz/images-(14).jpg" alt="Anindita">
-        </div>
-      </div>
+      <div class="gunungan-frame"><div class="photo-frame"><img src="https://i.postimg.cc/sxKjJtSz/images-(14).jpg" alt="Anindita"></div></div>
       <div class="name-script">Anindita</div>
       <div class="name-main">Anindita Yustina, s.pd</div>
-      <div class="address">
-        Jetak RT 001/RW 001, Bangsri, Purwantoro, Wonogiri<br><br>
-        Putri kedua dari Bapak Jali & Ibu Sulami
-      </div>
+      <div class="address">Jetak RT 001/RW 001, Bangsri, Purwantoro, Wonogiri<br><br>Putri kedua dari Bapak Jali & Ibu Sulami</div>
     </div>
 
     <div class="divider">AND</div>
 
     <div class="couple-card">
-      <div class="gunungan-frame">
-        <div class="photo-frame">
-          <img src="https://i.postimg.cc/sxKjJtSz/images-(14).jpg" alt="Risky">
-        </div>
-      </div>
+      <div class="gunungan-frame"><div class="photo-frame"><img src="https://i.postimg.cc/sxKjJtSz/images-(14).jpg" alt="Risky"></div></div>
       <div class="name-script">Risky</div>
       <div class="name-main">Risky Yanuar</div>
-      <div class="address">
-        Jetak RT 002/RW 001, Bangsri, Purwantoro, Wonogiri<br><br>
-        Putra kedua dari Bapak Misdi (alm) & Ibu Parti
-      </div>
+      <div class="address">Jetak RT 002/RW 001, Bangsri, Purwantoro, Wonogiri<br><br>Putra kedua dari Bapak Misdi (alm) & Ibu Parti</div>
     </div>
   </section>
 
@@ -379,101 +119,34 @@ section.active{display:block}
 
   <section id="rsvp">
     <div style="max-width:500px;margin:0 auto;text-align:center;padding:0 15px">
-      <div class="prewedding-frame">
-        <img id="prewedImg" alt="Risky & Anindita Prewedding">
-      </div>
+      <div class="prewedding-frame"><img id="prewedImg" alt="Risky & Anindita Prewedding"></div>
       <h2 style="font-family:'Cormorant Garamond',serif;font-size:32px;color:var(--maroon);margin-bottom:25px">Konfirmasi Kehadiran</h2>
       <input type="text" id="namaTamu" placeholder="Nama Anda" readonly style="width:100%;padding:12px;margin-bottom:12px;border:1px solid #ddd;border-radius:8px;background:#fff">
       <select id="kehadiran" style="width:100%;padding:12px;margin-bottom:12px;border:1px solid #ddd;border-radius:8px;background:#fff">
-        <option value="">Konfirmasi Kehadiran</option>
-        <option value="Hadir">Hadir</option>
-        <option value="Tidak Hadir">Tidak Hadir</option>
+        <option value="">Konfirmasi Kehadiran</option><option value="Hadir">Hadir</option><option value="Tidak Hadir">Tidak Hadir</option>
       </select>
       <textarea id="pesan" rows="4" placeholder="Ucapan & Doa" style="width:100%;padding:12px;margin-bottom:12px;border:1px solid #ddd;border-radius:8px;font-family:inherit;background:#fff"></textarea>
       <button onclick="kirimWA()" style="width:100%;background:var(--maroon);color:white;border:none;padding:15px;border-radius:8px;cursor:pointer;font-size:16px">Kirim ke WhatsApp</button>
     </div>
   </section>
-
 </div>
 
-<!-- BOTTOM NAV -->
 <div class="bottom-nav" id="bottomNav">
-  <div class="nav-item active" onclick="showSection('couple',this)">
-    <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
-    Couple
-  </div>
-  <div class="nav-item" onclick="showSection('event',this)">
-    <svg viewBox="0 0 24 24"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zM9 14H7v-2h2v2zm4 0h-2v-2h2v2zm4 0h-2v-2h2v2z"/></svg>
-    Event
-  </div>
-  <div class="nav-item" onclick="showSection('rsvp',this)">
-    <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
-    Wishes
-  </div>
+  <div class="nav-item active" onclick="showSection('couple',this)"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>Couple</div>
+  <div class="nav-item" onclick="showSection('event',this)"><svg viewBox="0 0 24 24"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zM9 14H7v-2h2v2zm4 0h-2v-2h2v2zm4 0h-2v-2h2v2z"/></svg>Event</div>
+  <div class="nav-item" onclick="showSection('rsvp',this)"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>Wishes</div>
 </div>
 
-<!-- MUSIC -->
-<audio id="bgMusic" loop preload="auto">
-  <source src="./lagu.mp3" type="audio/mpeg">
-</audio>
+<audio id="bgMusic" loop preload="auto"><source src="./lagu.mp3" type="audio/mpeg"></audio>
 <div class="music-btn" id="musicBtn" onclick="toggleMusic()">♪</div>
 
 <script>
-// Auto cache busting untuk gambar prewedding
-document.getElementById('prewedImg').src = 
-  'https://semb-commits.github.io/undangan-pernikahan/preweding.jpeg?t=' + Date.now();
-
-// Buka undangan
-document.getElementById('openBtn').addEventListener('click',()=>{
-  document.getElementById('cover').style.display='none';
-  document.getElementById('main').style.display='block';
-  document.getElementById('bottomNav').style.display='flex';
-  document.getElementById('musicBtn').style.display='flex';
-  const music = document.getElementById('bgMusic');
-  music.volume = 0.4;
-  music.play().catch(()=>{});
-});
-
-// Ganti section
-function showSection(id,el){
-  document.querySelectorAll('section').forEach(s=>s.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
-  el.classList.add('active');
-}
-
-// Toggle musik
-function toggleMusic(){
-  const music = document.getElementById('bgMusic');
-  const btn = document.getElementById('musicBtn');
-  if(music.paused){
-    music.play();
-    btn.classList.add('playing');
-  }else{
-    music.pause();
-    btn.classList.remove('playing');
-  }
-}
-
-// Kirim WA
-function kirimWA(){
-  const nama = document.getElementById('namaTamu').value;
-  const hadir = document.getElementById('kehadiran').value;
-  const pesan = document.getElementById('pesan').value;
-  if(!hadir){
-    alert('Pilih konfirmasi kehadiran dulu ya');
-    return;
-  }
-  const text = `Halo Risky & Anindita,%0A%0ANama: ${nama}%0AKehadiran: ${hadir}%0AUcapan: ${pesan}`;
-  window.open(`https://wa.me/6281234567890?text=${text}`, '_blank');
-}
-
-// Ambil nama tamu dari URL
-const urlParams = new URLSearchParams(window.location.search);
-const tamu = urlParams.get('untuk') || 'Tamu Undangan';
-document.getElementById('guestName').innerText = decodeURIComponent(tamu.replace(/\+/g,' '));
-document.getElementById('namaTamu').value = decodeURIComponent(tamu.replace(/\+/g,' '));
+document.getElementById('prewedImg').src='https://semb-commits.github.io/undangan-pernikahan/preweding.jpeg?t='+Date.now();
+document.getElementById('openBtn').addEventListener('click',()=>{document.getElementById('cover').style.display='none';document.getElementById('main').style.display='block';document.getElementById('bottomNav').style.display='flex';document.getElementById('musicBtn').style.display='flex';const music=document.getElementById('bgMusic');music.volume=0.4;music.play().catch(()=>{});});
+function showSection(id,el){document.querySelectorAll('section').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));el.classList.add('active');}
+function toggleMusic(){const music=document.getElementById('bgMusic');const btn=document.getElementById('musicBtn');if(music.paused){music.play();btn.classList.add('playing');}else{music.pause();btn.classList.remove('playing');}}
+function kirimWA(){const nama=document.getElementById('namaTamu').value;const hadir=document.getElementById('kehadiran').value;const pesan=document.getElementById('pesan').value;if(!hadir){alert('Pilih konfirmasi kehadiran dulu ya');return;}const text=`Halo Risky & Anindita,%0A%0ANama: ${nama}%0AKehadiran: ${hadir}%0AUcapan: ${pesan}`;window.open(`https://wa.me/6281234567890?text=${text}`,'_blank');}
+const urlParams=new URLSearchParams(window.location.search);const tamu=urlParams.get('untuk')||'Tamu Undangan';document.getElementById('guestName').innerText=decodeURIComponent(tamu.replace(/\+/g,' '));document.getElementById('namaTamu').value=decodeURIComponent(tamu.replace(/\+/g,' '));
 </script>
-
 </body>
-  </html>
+        </html>
