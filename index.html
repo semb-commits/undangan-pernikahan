@@ -8,15 +8,13 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:'Poppins',sans-serif;background:#f9f7f5;color:#333;overflow-x:hidden}
-img{max-width:100%;display:block}
 
 :root{
   --maroon:#7a1f2a;
   --cream:#f9f7f5;
-  --gold:#bfa76a;
 }
 
-/* Cover */
+/* COVER */
 .cover{
   height:100vh;
   width:100%;
@@ -38,43 +36,15 @@ img{max-width:100%;display:block}
   pointer-events:none;
 }
 .cover h3{font-family:'Cormorant Garamond',serif;font-size:16px;letter-spacing:4px;color:var(--maroon);font-weight:400;margin-bottom:20px}
-.photo-frame{
-  position:relative;
-  width:280px;
-  height:350px;
-  margin:20px 0;
-  animation:fadeInUp 1s 0.3s both;
-}
-.photo-frame img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  border-radius:50% 50% 0 0;
-}
-.ornament-left,.ornament-right{
-  position:absolute;
-  top:50px;
-  width:60px;
-  opacity:0.8;
-}
-.ornament-left{left:-40px}
-.ornament-right{right:-40px}
-.flowers{
-  position:absolute;
-  bottom:-30px;
-  left:50%;
-  transform:translateX(-50%);
-  width:200px;
-}
+
 .names{
   font-family:'Cormorant Garamond',serif;
   font-size:42px;
   color:var(--maroon);
   margin:20px 0 10px;
-  animation:fadeInUp 1s 0.5s both;
 }
 .guest-text{font-size:14px;color:#666;margin-bottom:5px}
-.guest-name{font-size:22px;font-weight:500;color:#333;margin-bottom:25px;animation:fadeInUp 1s 0.7s both}
+.guest-name{font-size:22px;font-weight:500;color:#333;margin-bottom:25px}
 .open-btn{
   background:var(--maroon);
   color:white;
@@ -86,17 +56,12 @@ img{max-width:100%;display:block}
   display:flex;
   align-items:center;
   gap:8px;
-  animation:fadeInUp 1s 0.9s both;
-  transition:0.3s;
+  z-index:200;
+  position:relative;
 }
 .open-btn:active{transform:scale(0.95)}
 
-@keyframes fadeInUp{
-  from{opacity:0;transform:translateY(30px)}
-  to{opacity:1;transform:translateY(0)}
-}
-
-/* Main Content */
+/* MAIN CONTENT */
 .main{display:none;padding-bottom:70px}
 .section{display:none;min-height:100vh;padding:30px 20px 80px;animation:fadeIn 0.5s}
 .section.active{display:block}
@@ -105,7 +70,6 @@ img{max-width:100%;display:block}
   from{opacity:0}to{opacity:1}
 }
 
-/* Section Styling */
 .section-title{
   font-family:'Cormorant Garamond',serif;
   font-size:28px;
@@ -113,31 +77,6 @@ img{max-width:100%;display:block}
   color:var(--maroon);
   margin-bottom:25px;
 }
-.couple-card{
-  text-align:center;
-  margin-bottom:40px;
-}
-.couple-card img{
-  width:200px;
-  height:260px;
-  object-fit:cover;
-  margin:0 auto 15px;
-  border-radius:50% 50% 0 0;
-  box-shadow:0 8px 20px rgba(0,0,0,0.1)
-}
-.couple-card .nickname{
-  font-family:'Cormorant Garamond',serif;
-  font-style:italic;
-  font-size:24px;
-  color:var(--gold);
-}
-.couple-card h3{
-  font-family:'Cormorant Garamond',serif;
-  font-size:24px;
-  color:var(--maroon);
-  margin:8px 0;
-}
-.couple-card p{font-size:14px;color:#666;line-height:1.6}
 
 .event-card{
   background:white;
@@ -153,7 +92,6 @@ img{max-width:100%;display:block}
   color:var(--maroon);
   margin-bottom:15px;
 }
-.event-card .date{font-size:18px;font-weight:500;margin:10px 0}
 .map-btn{
   display:inline-block;
   border:1px solid var(--maroon);
@@ -165,7 +103,6 @@ img{max-width:100%;display:block}
   font-size:14px;
 }
 
-/* Save the date */
 .save-date{
   background:var(--maroon);
   color:white;
@@ -187,48 +124,7 @@ img{max-width:100%;display:block}
 .time-box span{display:block;font-size:24px;font-weight:600}
 .time-box small{font-size:12px}
 
-/* Gallery */
-.gallery-grid{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:10px;
-}
-.gallery-grid img{
-  width:100%;
-  height:180px;
-  object-fit:cover;
-  border-radius:8px;
-}
-
-/* Wishes */
-.wishes input,.wishes textarea{
-  width:100%;
-  padding:12px;
-  margin:8px 0;
-  border:1px solid #ddd;
-  border-radius:8px;
-  font-family:inherit;
-}
-.wishes button{
-  width:100%;
-  background:var(--maroon);
-  color:white;
-  border:none;
-  padding:14px;
-  border-radius:8px;
-  margin-top:10px;
-  font-size:15px;
-}
-.comment{
-  background:white;
-  padding:15px;
-  border-radius:8px;
-  margin-top:12px;
-  box-shadow:0 2px 8px rgba(0,0,0,0.05)
-}
-.comment strong{color:var(--maroon);display:block;margin-bottom:5px}
-
-/* Bottom Nav */
+/* BOTTOM NAV */
 .bottom-nav{
   position:fixed;
   bottom:0;
@@ -251,7 +147,7 @@ img{max-width:100%;display:block}
 .nav-item.active{opacity:1}
 .nav-item svg{width:22px;height:22px;margin:0 auto 3px;display:block}
 
-/* Music Button */
+/* MUSIC BUTTON */
 .music-btn{
   position:fixed;
   bottom:80px;
@@ -267,19 +163,6 @@ img{max-width:100%;display:block}
   cursor:pointer;
   z-index:60;
 }
-.music-btn.playing svg{animation:spin 3s linear infinite}
-@keyframes spin{to{transform:rotate(360deg)}}
-
-/* Wayang ornaments */
-.wayang-left,.wayang-right{
-  position:absolute;
-  bottom:0;
-  width:120px;
-  opacity:0.15;
-  z-index:-1;
-}
-.wayang-left{left:0}
-.wayang-right{right:0}
 </style>
 </head>
 <body>
@@ -291,13 +174,7 @@ img{max-width:100%;display:block}
 <!-- COVER -->
 <div class="cover" id="cover">
   <h3>THE WEDDING OF</h3>
-  <div class="photo-frame">
-    <img src="https://i.postimg.cc/fRc5PJ6C/photo-1606760227091-3dd870d97f1d.jpg" alt="Couple">
-    <img src="https://i.imgur.com/5QZ8bYt.png" class="ornament-left" alt="">
-    <img src="https://i.imgur.com/5QZ8bYt.png" class="ornament-right" alt="">
-    <img src="https://i.imgur.com/9kX7QvF.png" class="flowers" alt="">
-  </div>
-  <div class="names" id="coupleNames">INTAN & JANU</div>
+  <div class="names">INTAN & JANU</div>
   <div class="guest-text">Kepada Yth.</div>
   <div class="guest-text">Bapak/Ibu/Saudara/i</div>
   <div class="guest-name" id="guestName">Tamu Undangan</div>
@@ -310,16 +187,13 @@ img{max-width:100%;display:block}
 <!-- MAIN CONTENT -->
 <div class="main" id="main">
   
-  <!-- COVER SECTION -->
   <div class="section active" id="sec-cover">
-    <div style="text-align:center;padding-top:20px">
+    <div style="text-align:center;padding-top:50px">
       <p style="font-size:12px;letter-spacing:3px;color:var(--maroon)">THE WEDDING OF</p>
       <h2 style="font-family:'Cormorant Garamond',serif;font-size:32px;color:var(--maroon);margin:10px 0">INTAN & JANU</h2>
-      <img src="https://i.postimg.cc/Mp7tLvhb/premium-photo-1681276170683-706111cf496e.jpg" style="width:100%;height:300px;object-fit:cover;margin:20px 0">
-      <div class="save-date">
+      <div class="save-date" style="margin-top:40px">
         <p>RABU, 10 JUNI 2026</p>
-        <div style="margin:15px 0">🌸</div>
-        <p style="letter-spacing:3px">SAVE THE DATE</p>
+        <p style="letter-spacing:3px;margin:15px 0">SAVE THE DATE</p>
         <div class="countdown" id="countdown">
           <div class="time-box"><span id="days">00</span><small>Days</small></div>
           <div class="time-box"><span id="hours">00</span><small>Hours</small></div>
@@ -328,33 +202,8 @@ img{max-width:100%;display:block}
         </div>
       </div>
     </div>
-    <img src="https://i.imgur.com/7QmK3Yp.png" class="wayang-left">
-    <img src="https://i.imgur.com/7QmK3Yp.png" class="wayang-right">
   </div>
 
-  <!-- COUPLE SECTION -->
-  <div class="section" id="sec-couple">
-    <p style="text-align:center;font-size:13px;color:#666;margin-bottom:20px">
-      Tanpa mengurangi rasa hormat dengan ini kami mengundang Bapak/Ibu/Saudara/i untuk hadir pada acara pernikahan kami
-    </p>
-    <div class="couple-card">
-      <img src="https://i.postimg.cc/Mp7tLvhb/premium-photo-1681276170683-706111cf496e.jpg">
-      <div class="nickname">Intan</div>
-      <h3>Fatimah Intan Nur'aini, S.Pd</h3>
-      <p>Jetak RT 001/RW 001, Bangsri, Purwantoro, Wonogiri</p>
-      <p>Putri kedua dari Bapak Dalmaji & Ibu Sulami, S.Pd.AUD</p>
-    </div>
-    <div style="text-align:center;margin:20px 0;font-family:'Cormorant Garamond',serif">AND</div>
-    <div class="couple-card">
-      <img src="https://i.postimg.cc/fRc5PJ6C/photo-1606760227091-3dd870d97f1d.jpg">
-      <div class="nickname">Janu</div>
-      <h3>Janu Adi Prastyo</h3>
-      <p>Jetak RT 002/RW 001, Bangsri, Purwantoro, Wonogiri</p>
-      <p>Putra kedua dari Bapak Misdi (alm) & Ibu Parti</p>
-    </div>
-  </div>
-
-  <!-- EVENT SECTION -->
   <div class="section" id="sec-event">
     <h2 class="section-title">Wedding</h2>
     <div class="event-card">
@@ -369,28 +218,6 @@ img{max-width:100%;display:block}
     </div>
   </div>
 
-  <!-- GALLERY SECTION -->
-  <div class="section" id="sec-gallery">
-    <h2 class="section-title">Gallery</h2>
-    <div class="gallery-grid">
-      <img src="https://i.postimg.cc/fRc5PJ6C/photo-1606760227091-3dd870d97f1d.jpg">
-      <img src="https://i.postimg.cc/Mp7tLvhb/premium-photo-1681276170683-706111cf496e.jpg">
-      <img src="https://i.postimg.cc/fRc5PJ6C/photo-1606760227091-3dd870d97f1d.jpg">
-      <img src="https://i.postimg.cc/Mp7tLvhb/premium-photo-1681276170683-706111cf496e.jpg">
-    </div>
-  </div>
-
-  <!-- WISHES SECTION -->
-  <div class="section" id="sec-wishes">
-    <h2 class="section-title">Wishes</h2>
-    <div class="wishes">
-      <input type="text" id="nama" placeholder="Nama Anda">
-      <textarea id="ucapan" rows="4" placeholder="Tulis ucapan & doa"></textarea>
-      <button onclick="kirimUcapan()">Kirim Ucapan</button>
-      <div id="comments"></div>
-    </div>
-  </div>
-
 </div>
 
 <!-- BOTTOM NAVIGATION -->
@@ -399,28 +226,16 @@ img{max-width:100%;display:block}
     <svg fill="currentColor" viewBox="0 0 20 20"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/></svg>
     Cover
   </div>
-  <div class="nav-item" onclick="showSection('couple')">
-    <svg fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-    Couple
-  </div>
   <div class="nav-item" onclick="showSection('event')">
     <svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"/></svg>
     Event
-  </div>
-  <div class="nav-item" onclick="showSection('gallery')">
-    <svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clip-rule="evenodd"/></svg>
-    Gallery
-  </div>
-  <div class="nav-item" onclick="showSection('wishes')">
-    <svg fill="currentColor" viewBox="0 0 20 20"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/></svg>
-    Wishes
   </div>
 </div>
 
 <!-- MUSIC BUTTON -->
 <div class="music-btn" id="musicBtn" onclick="toggleMusic()">
   <svg width="20" height="20" fill="#7a1f2a" viewBox="0 0 20 20">
-    <path d="M18 3a1 1 0 00-1.196-.98l-10 2A1 1 0 006 5v9.114A4.369 4.369 0 005 14c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2V7.82l8-1.6v5.894A4.37 4.37 0 0015 12c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2V3z"/>
+    <path d="M18 3a1 1 0 00-1.196-.98l-10 2A1 1 0 006 5v9.114A4.369 4.369 0 005 14c-1.657 0-3 .895-3 2s1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2V7.82l8-1.6v5.894A4.37 4.37 0 0015 12c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2V3z"/>
   </svg>
 </div>
 
@@ -477,29 +292,7 @@ setInterval(()=>{
   document.getElementById('minutes').innerText = Math.floor((distance%(1000*60*60))/(1000*60));
   document.getElementById('seconds').innerText = Math.floor((distance%(1000*60))/1000);
 },1000);
-
-// Buku tamu
-let comments=JSON.parse(localStorage.getItem('comments')||'[]');
-function renderComments(){
-  document.getElementById('comments').innerHTML=comments.map(c=>`
-    <div class="comment">
-      <strong>${c.nama}</strong>
-      <p>${c.ucapan}</p>
-    </div>
-  `).join('');
-}
-function kirimUcapan(){
-  const nama=document.getElementById('nama').value.trim();
-  const ucapan=document.getElementById('ucapan').value.trim();
-  if(!nama||!ucapan){alert('Isi nama dan ucapan dulu!');return}
-  comments.unshift({nama,ucapan});
-  localStorage.setItem('comments',JSON.stringify(comments));
-  renderComments();
-  document.getElementById('nama').value='';
-  document.getElementById('ucapan').value='';
-}
-renderComments();
 </script>
 
 </body>
- </html>
+  </html>
