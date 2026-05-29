@@ -5,29 +5,146 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Generator Link Undangan</title>
 <style>
-body{font-family:Arial,sans-serif;padding:20px;background:#faf8f5}
-h2{color:#7a1f2a}
-input, textarea, select{width:100%;padding:10px;border:1px solid #ddd;border-radius:8px;font-size:14px;margin-bottom:8px;box-sizing:border-box}
-button{background:#7a1f2a;color:white;border:none;padding:12px 25px;border-radius:8px;margin-top:10px;cursor:pointer;font-size:16px;margin-right:8px}
-.box{background:white;padding:15px;margin-top:15px;border-radius:8px;border:1px solid #ddd}
-.link-item{margin:12px 0;word-break:break-all;border-bottom:1px solid #eee;padding-bottom:8px}
-.link-item a{color:#7a1f2a;text-decoration:none}
-.copy-btn{background:#c9a86a;padding:5px 10px;font-size:12px;margin-left:8px;border-radius:5px;border:none;cursor:pointer}
-.action-btns{margin-top:15px}
-.action-btns button{background:#4a4a4a}
-.clear-btn{background:#b33 !important}
-.badge{display:inline-block;padding:3px 8px;border-radius:12px;font-size:12px;margin-left:8px;color:white}
+body{
+  font-family:Arial,sans-serif;
+  padding:20px;
+  background:#faf8f5;
+  margin:0;
+}
+.container{
+  max-width:600px;
+  margin:0 auto;
+}
+h2{
+  color:#7a1f2a;
+  text-align:center;
+  font-size:24px;
+  margin-bottom:5px;
+}
+p{
+  text-align:center;
+  color:#555;
+  font-size:14px;
+  margin-bottom:20px;
+}
+input, textarea, select{
+  width:100%;
+  padding:12px;
+  border:1px solid #ddd;
+  border-radius:8px;
+  font-size:14px;
+  margin-bottom:10px;
+  box-sizing:border-box;
+  font-family:Arial,sans-serif;
+}
+textarea{
+  height:120px;
+  resize:vertical;
+}
+button{
+  background:#7a1f2a;
+  color:white;
+  border:none;
+  padding:12px 20px;
+  border-radius:8px;
+  margin-top:8px;
+  cursor:pointer;
+  font-size:15px;
+  width:100%;
+}
+.box{
+  background:white;
+  padding:15px;
+  margin-top:20px;
+  border-radius:8px;
+  border:1px solid #ddd;
+}
+.link-item{
+  margin:12px 0;
+  word-break:break-all;
+  border-bottom:1px solid #eee;
+  padding-bottom:10px;
+}
+.link-item strong{
+  font-size:15px;
+}
+.link-item a{
+  color:#7a1f2a;
+  text-decoration:none;
+  font-size:13px;
+  display:block;
+  margin:5px 0;
+}
+.copy-btn{
+  background:#c9a86a;
+  padding:6px 12px;
+  font-size:12px;
+  margin-top:5px;
+  border-radius:5px;
+  border:none;
+  cursor:pointer;
+  width:auto;
+}
+.action-btns{
+  margin-top:15px;
+  display:flex;
+  gap:10px;
+}
+.action-btns button{
+  background:#4a4a4a;
+  flex:1;
+}
+.clear-btn{
+  background:#b33 !important;
+}
+.badge{
+  display:inline-block;
+  padding:3px 8px;
+  border-radius:12px;
+  font-size:12px;
+  margin-left:8px;
+  color:white;
+}
 .badge-pria{background:#3B82F6}
 .badge-wanita{background:#EC4899}
-.form-group{display:flex;gap:8px}
-.form-group input{flex:2}
-.form-group select{flex:1}
+.form-group{
+  display:flex;
+  gap:8px;
+}
+.form-group input{
+  flex:2;
+}
+.form-group select{
+  flex:1;
+}
+.form-group button{
+  flex:0 0 auto;
+  width:auto;
+  margin-top:0;
+}
+
+/* Mobile: biar turun ke bawah */
+@media(max-width:480px){
+  body{
+    padding:15px;
+  }
+  .form-group{
+    flex-direction:column;
+  }
+  .form-group button{
+    width:100%;
+  }
+  .action-btns{
+    flex-direction:column;
+  }
+}
 </style>
 
 <script src="https://cdn.sheetjs.com/xlsx-0.20.2/package/dist/xlsx.full.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 <body>
+<div class="container">
 
 <h2>Generator Link Undangan</h2>
 <p>Masukkan nama tamu + pilih sisi. 1 baris 1 nama juga bisa:</p>
@@ -49,6 +166,8 @@ Pak Joko dan Keluarga"></textarea>
 <button class="clear-btn" onclick="clearData()">Hapus Semua</button>
 
 <div id="hasil"></div>
+
+</div>
 
 <script>
 const baseLink = window.location.origin + window.location.pathname.replace('/generator.html', '/') + '?untuk=';
@@ -112,7 +231,7 @@ function render(){
     
     html += `<div class="link-item">
       <strong>${g.nama}</strong>
-      <span class="badge ${badgeClass}">${badgeText}</span><br>
+      <span class="badge ${badgeClass}">${badgeText}</span>
       <a href="${link}" target="_blank">${link}</a>
       <button class="copy-btn" onclick="copyLink('${link}')">Copy</button>
     </div>`;
@@ -181,4 +300,4 @@ function clearData(){
 </script>
 
 </body>
-</html>
+  </html>
