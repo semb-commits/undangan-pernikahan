@@ -96,6 +96,25 @@ section.active{display:block}
   animation:fadeUp 1.8s ease-out;
 }
 
+/* WAYANG BAWAH - DIBALIKIN */
+.wayang-bottom{
+  position:absolute;
+  bottom:-20px;
+  left:0;
+  right:0;
+  display:flex;
+  justify-content:space-between;
+  opacity:0.15;
+  animation:slideUp 2s ease-out;
+}
+.wayang-bottom img{
+  width:120px;
+}
+@keyframes slideUp{
+  from{transform:translateY(50px);opacity:0}
+  to{transform:translateY(0);opacity:0.15}
+}
+
 /* ANIMASI */
 @keyframes fadeDown{
   from{opacity:0;transform:translateY(-30px)}
@@ -239,6 +258,12 @@ section.active{display:block}
   <h2 id="guestName" style="font-family:'Cormorant Garamond',serif;font-size:24px;color:var(--maroon);margin-bottom:25px;animation:fadeUp 1.6s">Tamu Undangan</h2>
 
   <button class="open-btn" id="openBtn">✉️ Buka Undangan</button>
+
+  <!-- WAYANG BAWAH -->
+  <div class="wayang-bottom">
+    <img src="https://i.postimg.cc/7hXHNp7r/images-(13).jpg" alt="">
+    <img src="https://i.postimg.cc/7hXHNp7r/images-(13).jpg" alt="">
+  </div>
 </div>
 
 <!-- MAIN CONTENT -->
@@ -392,4 +417,4 @@ document.getElementById('namaTamu').value = decodeURIComponent(tamu.replace(/\+/
 </script>
 
 </body>
-      </html>
+  </html>
