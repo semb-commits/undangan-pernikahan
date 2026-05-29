@@ -8,12 +8,18 @@
 body{font-family:Arial,sans-serif;padding:20px;background:#faf8f5}
 h2{color:#7a1f2a}
 textarea{width:100%;height:150px;padding:10px;border:1px solid #ddd;border-radius:8px;font-size:14px}
-button{background:#7a1f2a;color:white;border:none;padding:12px 25px;border-radius:8px;margin-top:10px;cursor:pointer;font-size:16px}
+button{background:#7a1f2a;color:white;border:none;padding:12px 25px;border-radius:8px;margin-top:10px;cursor:pointer;font-size:16px;margin-right:8px}
 .box{background:white;padding:15px;margin-top:15px;border-radius:8px;border:1px solid #ddd}
 .link-item{margin:8px 0;word-break:break-all}
 .link-item a{color:#7a1f2a;text-decoration:none}
 .copy-btn{background:#c9a86a;padding:5px 10px;font-size:12px;margin-left:8px;border-radius:5px;border:none;cursor:pointer}
+.action-btns{margin-top:15px}
+.action-btns button{background:#4a4a4a}
 </style>
+
+<!-- Library buat export -->
+<script src="https://cdn.sheetjs.com/xlsx-0.20.2/package/dist/xlsx.full.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 <body>
 
@@ -29,7 +35,6 @@ Pak Joko dan Keluarga"></textarea>
 <div id="hasil"></div>
 
 <script>
-// Otomatis ngikutin URL repo lu sekarang
 const baseLink = window.location.origin + window.location.pathname.replace('/generator.html', '/') + '?untuk=';
 
 function generate(){
@@ -46,6 +51,11 @@ function generate(){
     </div>`;
   });
   
+  html += `<div class="action-btns">
+    <button onclick="downloadExcel()">Download Excel</button>
+    <button onclick="downloadPDF()">Download PDF</button>
+  </div>`;
+  
   html += '</div>';
   document.getElementById('hasil').innerHTML = html;
 }
@@ -54,7 +64,50 @@ function copyLink(link){
   navigator.clipboard.writeText(link);
   alert('Link sudah dicopy!');
 }
+
+function downloadExcel(){
+  const rows = [];
+  document.querySelectorAll('.link-item').forEach(item => {
+    const nama = item.querySelector('strong').innerText;
+    const link = item.querySelector('a').href;
+    rows.push({Nama: nama, Link: link});
+  });
+  
+  const ws = XLSX.utils.json_to_sheet(rows);
+  const wb = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(wb, ws, "Tamu");
+  XLSX.writeFile(wb, "daftar-tamu-undangan.xlsx");
+}
+
+function downloadPDF(){
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF();
+  let y = 15;
+  
+  doc.setFontSize(14);
+  doc.text("Daftar Link Undangan", 10, y);
+  y += 10;
+  doc.setFontSize(10);
+  
+  document.querySelectorAll('.link-item').forEach(item => {
+    const nama = item.querySelector('strong').innerText;
+    const link = item.querySelector('a').href;
+    const text = nama + ": " + link;
+    
+    // Auto wrap text kalau kepanjangan
+    const lines = doc.splitTextToSize(text, 180);
+    doc.text(lines, 10, y);
+    y += lines.length * 6 + 4;
+    
+    if(y > 270){
+      doc.addPage();
+      y = 15;
+    }
+  });
+  
+  doc.save("daftar-tamu-undangan.pdf");
+}
 </script>
 
 </body>
-</html>
+  </html>
