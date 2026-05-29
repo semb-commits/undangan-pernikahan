@@ -15,9 +15,9 @@ button{background:#7a1f2a;color:white;border:none;padding:12px 25px;border-radiu
 .copy-btn{background:#c9a86a;padding:5px 10px;font-size:12px;margin-left:8px;border-radius:5px;border:none;cursor:pointer}
 .action-btns{margin-top:15px}
 .action-btns button{background:#4a4a4a}
+.clear-btn{background:#b33 !important}
 </style>
 
-<!-- Library buat export -->
 <script src="https://cdn.sheetjs.com/xlsx-0.20.2/package/dist/xlsx.full.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
@@ -30,30 +30,54 @@ button{background:#7a1f2a;color:white;border:none;padding:12px 25px;border-radiu
 Siti Aminah
 Pak Joko dan Keluarga"></textarea>
 
-<button onclick="generate()">Buat Link</button>
+<button onclick="generate()">Buat/Tambah Link</button>
+<button class="clear-btn" onclick="clearData()">Hapus Semua</button>
 
 <div id="hasil"></div>
 
 <script>
 const baseLink = window.location.origin + window.location.pathname.replace('/generator.html', '/') + '?untuk=';
+let guestList = JSON.parse(localStorage.getItem('guestList') || '[]');
+
+// Load data pas halaman dibuka biar gak hilang pas refresh
+window.onload = function(){
+  if(guestList.length > 0) render();
+}
 
 function generate(){
-  const list = document.getElementById('namaList').value.trim().split('\n');
-  let html = '<div class="box"><h3>Link Undangan:</h3>';
+  const newNames = document.getElementById('namaList').value.trim().split('\n');
+  newNames.forEach(nama => {
+    nama = nama.trim();
+    if(nama !== '' && !guestList.includes(nama)){
+      guestList.push(nama);
+    }
+  });
   
-  list.forEach(nama => {
-    if(nama.trim() === '') return;
-    const link = baseLink + encodeURIComponent(nama.trim());
+  localStorage.setItem('guestList', JSON.stringify(guestList));
+  document.getElementById('namaList').value = '';
+  render();
+}
+
+function render(){
+  if(guestList.length === 0) {
+    document.getElementById('hasil').innerHTML = '';
+    return;
+  }
+  
+  let html = `<div class="box"><h3>Link Undangan - Total ${guestList.length} tamu:</h3>`;
+  
+  guestList.forEach(nama => {
+    const link = baseLink + encodeURIComponent(nama);
     html += `<div class="link-item">
-      <strong>${nama.trim()}</strong><br>
+      <strong>${nama}</strong><br>
       <a href="${link}" target="_blank">${link}</a>
       <button class="copy-btn" onclick="copyLink('${link}')">Copy</button>
     </div>`;
   });
   
   html += `<div class="action-btns">
-    <button onclick="downloadExcel()">Download Excel</button>
-    <button onclick="downloadPDF()">Download PDF</button>
+    <button onclick="downloadExcel()">Download Semua Excel</button>
+    <button onclick="downloadPDF()">Download Semua PDF</button>
   </div>`;
   
   html += '</div>';
@@ -66,12 +90,10 @@ function copyLink(link){
 }
 
 function downloadExcel(){
-  const rows = [];
-  document.querySelectorAll('.link-item').forEach(item => {
-    const nama = item.querySelector('strong').innerText;
-    const link = item.querySelector('a').href;
-    rows.push({Nama: nama, Link: link});
-  });
+  const rows = guestList.map(nama => ({
+    Nama: nama, 
+    Link: baseLink + encodeURIComponent(nama)
+  }));
   
   const ws = XLSX.utils.json_to_sheet(rows);
   const wb = XLSX.utils.book_new();
@@ -87,17 +109,14 @@ function downloadPDF(){
   doc.setFontSize(14);
   doc.text("Daftar Link Undangan", 10, y);
   y += 10;
-  doc.setFontSize(10);
+  doc.setFontSize(9);
   
-  document.querySelectorAll('.link-item').forEach(item => {
-    const nama = item.querySelector('strong').innerText;
-    const link = item.querySelector('a').href;
-    const text = nama + ": " + link;
-    
-    // Auto wrap text kalau kepanjangan
+  guestList.forEach((nama, i) => {
+    const link = baseLink + encodeURIComponent(nama);
+    const text = `${i+1}. ${nama}: ${link}`;
     const lines = doc.splitTextToSize(text, 180);
     doc.text(lines, 10, y);
-    y += lines.length * 6 + 4;
+    y += lines.length * 5 + 3;
     
     if(y > 270){
       doc.addPage();
@@ -107,7 +126,15 @@ function downloadPDF(){
   
   doc.save("daftar-tamu-undangan.pdf");
 }
+
+function clearData(){
+  if(confirm('Yakin mau hapus semua data tamu?')){
+    localStorage.removeItem('guestList');
+    guestList = [];
+    render();
+  }
+}
 </script>
 
 </body>
-  </html>
+</html>
